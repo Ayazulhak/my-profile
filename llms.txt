@@ -10,9 +10,9 @@
 
 ## Public pages
 
-- [Profile](https://ayazulhak.github.io/my-profile/): professional summary and core focus.
-- [Projects](https://ayazulhak.github.io/my-profile/projects.html): anonymized portfolio map of confidential business-system work.
-- [Architecture](https://ayazulhak.github.io/my-profile/architecture.html): public-safe animated architecture patterns.
+- [Profile](https://ayazulhak.github.io/my-profile/): professional summary, verified career signals, selected engineering work, leadership approach, availability, and contact.
+- [Projects](https://ayazulhak.github.io/my-profile/projects.html): 42 anonymized systems named by their business and engineering functions.
+- [Architecture](https://ayazulhak.github.io/my-profile/architecture.html): 42 searchable, public-safe architecture diagrams with project-specific components and connection flows.
 - [Technologies](https://ayazulhak.github.io/my-profile/technologies.html): verified technology experience.
 - [Impact](https://ayazulhak.github.io/my-profile/impact.html): evidence-backed delivery themes.
 

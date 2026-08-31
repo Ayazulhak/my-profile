@@ -1,44 +1,4383 @@
 [
-  {"id":"erp-modernization","title":"ERP modernization workspace","summary":"A multi-surface ERP replacement with independently scalable business services, reporting, and operational integrations.","accent":"#2563eb","nodes":[["staff","Staff workspace",70,90,"ui"],["portal","Customer portal",70,330,"ui"],["host","Web application host",320,210,"service"],["read","Read/query service",570,90,"service"],["write","Write/workflow service",570,250,"worker"],["report","Report generator",570,410,"worker"],["data","Operational data store",820,170,"data"],["bus","Message broker",820,350,"queue"]],"edges":[["staff","host","interactive work"],["portal","host","customer requests"],["host","read","queries"],["host","write","commands"],["host","report","reports"],["read","data","read models"],["write","data","transactions"],["write","bus","async work"],["bus","report","scheduled output"]]},
-  {"id":"case-workflow","title":"Multi-tenant case workflow","summary":"Public intake and staff case management coordinated through CQRS, event history, document storage, and notifications.","accent":"#7c3aed","nodes":[["intake","Public intake",60,90,"ui"],["staff","Staff case workspace",60,350,"ui"],["api","Case command API",300,210,"service"],["events","Event history",540,80,"data"],["views","Case read models",540,250,"data"],["docs","Document storage",540,420,"data"],["notify","Notification pipeline",790,120,"queue"],["external","Meeting & signing services",790,350,"external"]],"edges":[["intake","api","submit case"],["staff","api","manage case"],["api","events","append events"],["events","views","project state"],["api","docs","store documents"],["events","notify","trigger reminders"],["api","external","schedule & sign"],["external","views","integration status"]]},
-  {"id":"print-suite","title":"Print and work-management suite","summary":"Customer ordering and internal production work converge in a composed web experience with catalog, document, and print services.","accent":"#db2777","nodes":[["customer","Customer ordering",55,90,"ui"],["team","Production workspace",55,360,"ui"],["shell","Composed web shell",280,210,"service"],["catalog","Catalog & quoting",500,70,"service"],["orders","Order workflow",500,215,"worker"],["documents","Document builder",500,370,"worker"],["production","Production queue",760,120,"queue"],["store","Business data",760,320,"data"]],"edges":[["customer","shell","browse & order"],["team","shell","manage work"],["shell","catalog","products & prices"],["shell","orders","submit jobs"],["orders","production","queue work"],["orders","documents","build output"],["catalog","store","catalog data"],["orders","store","order state"],["documents","production","print assets"]]},
-  {"id":"inventory-ordering","title":"Inventory and ordering workspace","summary":"Mobile counting, browser operations, ordering, and assistant queries share an inventory domain and multi-tenant data layer.","accent":"#059669","nodes":[["mobile","Mobile counting app",60,80,"ui"],["web","Browser operations",60,240,"ui"],["assistant","Assistant query surface",60,405,"ui"],["api","Inventory APIs",315,220,"service"],["domain","Counting & ordering domain",540,220,"worker"],["tenant","Tenant context",540,70,"service"],["store","Inventory stores",800,170,"data"],["print","Reports & labels",800,360,"external"]],"edges":[["mobile","api","counts & scans"],["web","api","orders & review"],["assistant","api","read-only queries"],["api","tenant","resolve tenant"],["api","domain","business commands"],["domain","store","stock state"],["domain","print","operational output"],["tenant","store","store selection"]]},
-  {"id":"saas-shell","title":"Multi-tenant SaaS shell","summary":"A host application composes independently delivered operational modules while centralizing identity, jobs, messaging, and reporting.","accent":"#ea580c","nodes":[["browser","Authenticated browser",60,220,"ui"],["shell","Application shell",285,220,"service"],["modules","Micro-frontends",500,70,"ui"],["reports","Reporting module",500,220,"service"],["jobs","Background jobs",500,380,"worker"],["identity","Identity provider",750,60,"external"],["bus","Message bus",750,220,"queue"],["sql","Shared operational store",750,390,"data"]],"edges":[["browser","shell","secure session"],["shell","identity","OIDC"],["shell","modules","load fragments"],["shell","reports","compose reports"],["shell","jobs","schedule work"],["modules","bus","domain messages"],["jobs","bus","workflow messages"],["reports","sql","report data"],["jobs","sql","job state"]]},
-  {"id":"public-intake","title":"Public-service intake portal","summary":"A public submission moves through validation, regional routing, document storage, staff review, and scheduled reporting.","accent":"#0891b2","nodes":[["public","Public form",70,220,"ui"],["validate","Validation & eligibility",280,220,"service"],["route","Regional case routing",490,220,"worker"],["staff","Staff review",710,70,"ui"],["blob","Document storage",710,220,"data"],["notify","Notification service",710,370,"queue"],["report","Report generator",900,220,"external"]],"edges":[["public","validate","submit intake"],["validate","route","accepted request"],["route","staff","assigned case"],["route","blob","uploaded files"],["route","notify","confirmation"],["staff","report","case report"],["blob","report","document data"]]},
-  {"id":"ticketing","title":"Service ticket workflow","summary":"Web, task-focused, and mobile surfaces share ticket commands, event history, read models, recurring work, and resilient messaging.","accent":"#4f46e5","nodes":[["web","Service desk",45,80,"ui"],["task","Task workspace",45,240,"ui"],["mobile","Mobile component",45,400,"ui"],["api","Ticket API",270,220,"service"],["cqrs","Command/event core",500,220,"worker"],["eventstore","Event store",725,80,"data"],["read","SQL/MySQL read data",725,240,"data"],["recurring","Recurring task worker",725,400,"worker"],["bus","Service bus",920,220,"queue"]],"edges":[["web","api","ticket requests"],["task","api","task updates"],["mobile","api","field actions"],["api","cqrs","commands"],["cqrs","eventstore","events"],["eventstore","read","projections"],["cqrs","bus","notifications"],["recurring","cqrs","scheduled commands"],["bus","recurring","queued work"]]},
-  {"id":"field-companion","title":"Field-work companion","summary":"A mobile container presents time, notes, and tickets as coordinated modules backed by their existing service APIs.","accent":"#16a34a","nodes":[["worker","Field worker",65,220,"ui"],["container","Mobile container",290,220,"ui"],["time","Time module",530,70,"service"],["notes","Notes module",530,220,"service"],["tickets","Ticket module",530,370,"service"],["gateway","Secure service gateway",760,220,"service"],["systems","Operational services",930,220,"data"]],"edges":[["worker","container","mobile session"],["container","time","time entry"],["container","notes","field notes"],["container","tickets","service tasks"],["time","gateway","API calls"],["notes","gateway","API calls"],["tickets","gateway","API calls"],["gateway","systems","persist work"]]},
-  {"id":"crm-journey","title":"Customer relationship workspace","summary":"Customer journey interactions are captured as events, projected into working views, and coordinated with notes and messaging.","accent":"#c026d3","nodes":[["team","Relationship team",70,220,"ui"],["crm","CRM workspace",290,220,"ui"],["commands","Journey commands",500,110,"service"],["events","Customer event stream",700,110,"data"],["views","Journey read model",700,330,"data"],["notes","Notes integration",500,330,"external"],["messages","Message broker",900,220,"queue"]],"edges":[["team","crm","customer work"],["crm","commands","record interaction"],["commands","events","append event"],["events","views","build journey"],["crm","views","read history"],["crm","notes","linked notes"],["events","messages","publish change"],["messages","notes","coordinate update"]]},
-  {"id":"deployment-console","title":"Deployment operations console","summary":"Every requested infrastructure action passes a risk policy gate before a specialized adapter can touch a target, with audit state retained.","accent":"#dc2626","nodes":[["operator","Operator",55,220,"ui"],["console","Operations console",260,220,"ui"],["policy","Policy gate",465,220,"service"],["audit","Audit record",465,410,"data"],["k8s","Cluster adapter",700,60,"worker"],["sql","Database adapter",700,180,"worker"],["ssh","Host adapter",700,300,"worker"],["tickets","Ticket adapter",700,420,"worker"],["targets","Managed environments",915,220,"external"]],"edges":[["operator","console","request action"],["console","policy","evaluate risk"],["policy","audit","record decision"],["policy","k8s","approved cluster action"],["policy","sql","approved data action"],["policy","ssh","approved host action"],["policy","tickets","approved ticket action"],["k8s","targets","execute"],["sql","targets","execute"],["ssh","targets","execute"],["tickets","targets","execute"]]},
-  {"id":"event-explorer","title":"Event history explorer","summary":"Support users and tooling query a read-only API that reconstructs operational timelines without mutating the source event store.","accent":"#0f766e","nodes":[["support","Support user",70,120,"ui"],["tool","Assistant tooling",70,360,"ui"],["viewer","History viewer",310,120,"ui"],["toolapi","Query tool server",310,360,"service"],["api","Read-only JSON API",560,220,"service"],["store","Event store",805,220,"data"],["timeline","Reconstructed timeline",805,410,"data"]],"edges":[["support","viewer","select aggregate"],["tool","toolapi","structured query"],["viewer","api","history request"],["toolapi","api","history request"],["api","store","read events"],["store","timeline","ordered stream"],["timeline","viewer","render timeline"]]},
-  {"id":"client-portal","title":"Client communication portal","summary":"A mobile-first portal combines secure access, progress data, documents, and outbound updates for service clients.","accent":"#9333ea","nodes":[["client","Mobile client",60,220,"ui"],["portal","Responsive portal",280,220,"ui"],["identity","Identity service",500,70,"external"],["process","Client process API",500,220,"service"],["docs","Document service",500,380,"service"],["store","Client data",760,150,"data"],["updates","Update notifications",760,330,"queue"]],"edges":[["client","portal","secure visit"],["portal","identity","authenticate"],["portal","process","progress requests"],["portal","docs","document requests"],["process","store","status data"],["docs","store","document metadata"],["process","updates","status changed"],["updates","client","notify"]]},
-  {"id":"receivables-wasm","title":"High-speed receivables entry","summary":"Browser-side caching and queued background posting keep rapid keyboard entry responsive while the API owns validation, reporting, and persistence.","accent":"#0284c7","nodes":[["clerk","Accounts clerk",55,220,"ui"],["wasm","WASM entry grid",265,220,"ui"],["cache","Browser cache",470,80,"data"],["worker","Background post queue",470,300,"worker"],["api","Receivables API",680,220,"service"],["store","SQL/MySQL",890,110,"data"],["report","Reports & printing",890,330,"external"]],"edges":[["clerk","wasm","ten-key entry"],["wasm","cache","instant local state"],["cache","worker","queue changes"],["worker","api","batch posts"],["api","store","validated entries"],["api","report","render output"],["store","wasm","reference data"]]},
-  {"id":"label-workflow","title":"Batch label workflow","summary":"A thin browser client requests label data and rendering from an API, previews PDF output, then dispatches a printer-ready job.","accent":"#d97706","nodes":[["operator","Label operator",60,220,"ui"],["wasm","Browser label app",270,220,"ui"],["api","Label API",490,220,"service"],["data","Product data",700,70,"data"],["rdlc","Label report renderer",700,220,"worker"],["preview","PDF preview",700,380,"ui"],["printer","Label printer",910,220,"external"]],"edges":[["operator","wasm","choose batch"],["wasm","api","request labels"],["api","data","load records"],["api","rdlc","render batch"],["rdlc","preview","return PDF"],["preview","wasm","review"],["rdlc","printer","print dispatch"]]},
-  {"id":"calculators","title":"Financial calculation workspace","summary":"Validated browser inputs are calculated against stored business rules and can be rendered as auditable reports.","accent":"#be123c","nodes":[["advisor","Advisor",70,220,"ui"],["form","Calculation form",300,220,"ui"],["validation","Rule validation",510,90,"service"],["engine","Calculation engine",510,260,"worker"],["sql","Stored procedures",740,120,"data"],["report","Report generator",740,340,"worker"],["pdf","PDF result",930,220,"external"]],"edges":[["advisor","form","enter values"],["form","validation","validate"],["validation","engine","accepted inputs"],["engine","sql","apply stored rules"],["engine","report","calculation result"],["sql","report","reference data"],["report","pdf","render"],["pdf","advisor","download"]]},
-  {"id":"airport-operations","title":"Airport operations workflow","summary":"Real-time web and mobile operations send commands through messaging and event sourcing, then consume dedicated read, search, and notification models.","accent":"#1d4ed8","nodes":[["web","Operations web",40,80,"ui"],["mobile","Valet mobile",40,240,"ui"],["customer","Customer mobile",40,400,"ui"],["api","Operations API",250,220,"service"],["commands","CQRS command handlers",470,220,"worker"],["rabbit","Message broker",670,80,"queue"],["events","Event store",670,220,"data"],["read","Document read models",670,390,"data"],["search","Search index",890,110,"data"],["push","Push notifications",890,330,"external"]],"edges":[["web","api","manage operation"],["mobile","api","valet updates"],["customer","api","reservation status"],["api","commands","commands"],["commands","events","append events"],["commands","rabbit","publish work"],["events","read","project state"],["read","search","index"],["rabbit","push","notify devices"],["read","api","query results"]]},
-  {"id":"warehouse","title":"Warehouse and billing system","summary":"A desktop warehouse client calls a classic web service over a central SQL model, with reporting and an external SOAP integration.","accent":"#475569","nodes":[["staff","Warehouse staff",55,220,"ui"],["desktop","WinForms client",270,220,"ui"],["asmx","ASMX web service",500,220,"service"],["sql","Warehouse SQL database",740,130,"data"],["reports","Invoices & reports",740,340,"external"],["soap","External SOAP service",930,220,"external"]],"edges":[["staff","desktop","inventory & billing"],["desktop","asmx","service calls"],["asmx","sql","warehouse data"],["sql","reports","report datasets"],["desktop","reports","print output"],["desktop","soap","partner lookup"]]},
-  {"id":"referral-platform","title":"Dealer referral platform","summary":"Legacy referral intake assigns leads to dealers, tracks fulfillment in SQL, and feeds scheduled operational reporting.","accent":"#15803d","nodes":[["consumer","Referral intake",60,100,"ui"],["operator","Operations desktop",60,350,"ui"],["web","Legacy web application",300,180,"service"],["assign","Dealer assignment",510,180,"worker"],["sql","Referral database",720,180,"data"],["ssis","Reporting pipeline",720,360,"worker"],["dealer","Dealer network",920,80,"external"],["reports","Operational reports",920,360,"external"]],"edges":[["consumer","web","submit referral"],["operator","web","manage referral"],["web","assign","route lead"],["assign","dealer","send lead"],["assign","sql","save assignment"],["sql","ssis","extract"],["ssis","reports","publish"],["dealer","sql","fulfillment status"]]},
-  {"id":"legacy-portal","title":"Client portal modernization","summary":"A role-aware legacy portal centralizes login, authorization, client workflows, and SQL-backed service records.","accent":"#0369a1","nodes":[["client","Portal user",70,220,"ui"],["login","Forms authentication",285,100,"service"],["portal","Web Forms portal",285,300,"ui"],["roles","Role authorization",510,100,"service"],["workflow","Client workflows",510,300,"worker"],["sql","SQL data store",760,220,"data"],["output","Portal results",930,220,"external"]],"edges":[["client","login","sign in"],["login","roles","resolve access"],["roles","portal","authorized session"],["client","portal","use portal"],["portal","workflow","request service"],["workflow","sql","read/write"],["sql","output","status data"],["output","portal","display"]]},
-  {"id":"data-utilities","title":"Data-cleanup utilities","summary":"Desktop and command-line tools parse payroll, spreadsheet, PDF, and text inputs into validated, cleaned exports.","accent":"#a21caf","nodes":[["files","CSV / Excel / PDF inputs",50,220,"data"],["gui","Desktop GUI",265,100,"ui"],["cli","Command line",265,340,"ui"],["parse","Format parsers",485,220,"service"],["rules","Validation & scrub rules",690,220,"worker"],["reference","Reference data",690,410,"data"],["exports","Clean exports",910,220,"external"]],"edges":[["files","gui","select files"],["files","cli","batch input"],["gui","parse","load"],["cli","parse","load"],["parse","rules","normalized rows"],["reference","rules","exclusions & mappings"],["rules","exports","write output"]]},
-  {"id":"record-engine","title":"Record-management engine","summary":"Reusable Blazor forms separate read and write APIs, plug workflow hooks into mutations, and support multiple data sources.","accent":"#0d9488","nodes":[["host","Consuming application",45,220,"ui"],["components","Reusable grid & forms",250,220,"ui"],["query","Query API",485,90,"service"],["write","Write API",485,300,"service"],["hooks","Before/after workflow hooks",690,390,"worker"],["sql","SQL source",890,80,"data"],["mysql","MySQL source",890,220,"data"],["excel","Spreadsheet source",890,360,"data"]],"edges":[["host","components","embed UI"],["components","query","reads"],["components","write","mutations"],["write","hooks","business extensions"],["query","sql","query"],["query","mysql","query"],["query","excel","query"],["write","sql","persist"],["write","mysql","persist"]]},
-  {"id":"event-foundation","title":"Event workflow foundation","summary":"Commands load an aggregate, append immutable events, project read models, and publish integration events through a selectable backend.","accent":"#6d28d9","nodes":[["command","Domain command",60,220,"ui"],["handler","Command handler",270,220,"service"],["aggregate","Domain aggregate",480,220,"worker"],["eventdb","Event-stream backend",700,90,"data"],["sql","SQL event backend",700,350,"data"],["projection","Projection workers",890,220,"worker"],["read","Read models",890,420,"data"]],"edges":[["command","handler","dispatch"],["handler","aggregate","load & decide"],["aggregate","eventdb","append events"],["aggregate","sql","alternate backend"],["eventdb","projection","event stream"],["sql","projection","event stream"],["projection","read","build views"]]},
-  {"id":"service-foundation","title":"Service delivery foundation","summary":"A standardized service host composes configuration, secrets, authentication, tenancy, caching, diagnostics, and the application endpoint.","accent":"#2563eb","nodes":[["host","Service startup",65,220,"service"],["config","Configuration",280,60,"data"],["secrets","Secret provider",280,160,"external"],["identity","Authentication",280,270,"external"],["tenant","Tenant resolver",280,380,"service"],["cache","Distributed cache",530,80,"data"],["logging","Logs & telemetry",530,360,"external"],["app","Application service",760,220,"service"],["client","Service consumer",930,220,"ui"]],"edges":[["config","host","settings"],["secrets","host","credentials"],["identity","host","security"],["tenant","host","tenant context"],["host","cache","cache wiring"],["host","logging","observability"],["host","app","compose runtime"],["client","app","API request"]]},
-  {"id":"ui-system","title":"Reusable UI system","summary":"Consuming Blazor applications compose shared form, grid, dialog, validation, and component variants over common data contracts.","accent":"#c026d3","nodes":[["app","Host application",70,220,"ui"],["forms","Form components",300,70,"ui"],["grids","Grid components",300,190,"ui"],["dialogs","Dialog components",300,310,"ui"],["basic","Basic component variants",300,430,"ui"],["validation","Validation contracts",570,120,"service"],["data","Data access contracts",570,320,"service"],["render","Browser UI",850,220,"external"]],"edges":[["app","forms","compose"],["app","grids","compose"],["app","dialogs","compose"],["app","basic","compose"],["forms","validation","validate"],["grids","data","query"],["dialogs","data","mutate"],["validation","render","render state"],["data","render","render data"]]},
-  {"id":"web-host","title":"Web host utilities","summary":"Lightweight web hosts reuse common session, validation, service routing, error handling, and user-context helpers.","accent":"#0f766e","nodes":[["browser","Browser",60,220,"ui"],["shell","Thin web host",275,220,"ui"],["session","Session & user context",500,70,"service"],["validation","Validation & errors",500,220,"service"],["routing","Service URL routing",500,370,"service"],["apis","Application APIs",760,220,"external"],["telemetry","Client diagnostics",920,390,"external"]],"edges":[["browser","shell","interaction"],["shell","session","user state"],["shell","validation","request checks"],["shell","routing","resolve endpoint"],["routing","apis","HTTP calls"],["validation","telemetry","errors"],["apis","shell","response"]]},
-  {"id":"messaging","title":"Messaging workflow service","summary":"Producers start messages or routing slips, a broker transports work, saga state coordinates steps, and failures follow compensating paths.","accent":"#e11d48","nodes":[["producer","Domain producer",55,220,"service"],["route","Routing slip / saga",270,220,"worker"],["asb","Cloud message broker",500,90,"queue"],["rabbit","Portable message broker",500,350,"queue"],["consumerA","Workflow consumer A",725,70,"worker"],["consumerB","Workflow consumer B",725,220,"worker"],["compensate","Compensation handler",725,380,"worker"],["state","Saga persistence",920,220,"data"]],"edges":[["producer","route","start workflow"],["route","asb","cloud route"],["route","rabbit","portable route"],["asb","consumerA","deliver"],["asb","consumerB","deliver"],["rabbit","consumerA","deliver"],["rabbit","consumerB","deliver"],["consumerA","state","step state"],["consumerB","state","step state"],["state","compensate","failed step"]]},
-  {"id":"search","title":"Search capability","summary":"One search contract supports embedded or remote use while routing queries to Elasticsearch, Lucene, or an HTTP-backed store.","accent":"#0284c7","nodes":[["user","Search user",55,220,"ui"],["components","Search & facet UI",260,120,"ui"],["api","Optional search API",260,330,"service"],["core","Search abstraction",500,220,"service"],["elastic","Elasticsearch",755,60,"data"],["lucene","Lucene index",755,220,"data"],["crud","HTTP-backed search",755,380,"data"],["results","Ranked results",930,220,"external"]],"edges":[["user","components","query & filters"],["components","core","embedded search"],["components","api","remote search"],["api","core","search request"],["core","elastic","provider"],["core","lucene","provider"],["core","crud","provider"],["elastic","results","matches"],["lucene","results","matches"],["crud","results","matches"]]},
-  {"id":"communication","title":"Communication service","summary":"Queued communication requests can merge templates, select a provider, send email or SMS, and maintain delivery and unsubscribe state.","accent":"#ea580c","nodes":[["apps","Consuming applications",45,220,"service"],["bus","Inbound message queue",245,220,"queue"],["merge","Template merge",455,80,"worker"],["router","Provider router",455,260,"service"],["unsub","Unsubscribe rules",455,420,"data"],["email","Email providers",700,100,"external"],["sms","SMS providers",700,300,"external"],["status","Delivery status store",920,220,"data"]],"edges":[["apps","bus","send request"],["bus","merge","dynamic content"],["merge","router","rendered message"],["unsub","router","delivery permission"],["router","email","email route"],["router","sms","SMS route"],["email","status","provider result"],["sms","status","provider result"]]},
-  {"id":"document-approval","title":"Document approval workflow","summary":"A host requests approval through messaging; verification protects access before viewing, signing, storing, and eventing the result.","accent":"#7c3aed","nodes":[["host","Host application",45,220,"ui"],["bus","Approval request queue",245,220,"queue"],["service","Approval service",450,220,"service"],["verify","Verification code",650,70,"service"],["viewer","Document viewer & sign",650,240,"ui"],["files","Approval file storage",650,410,"data"],["events","Approval event history",880,140,"data"],["notify","Email notification",880,350,"external"]],"edges":[["host","bus","request approval"],["bus","service","deliver request"],["service","verify","issue code"],["verify","viewer","grant access"],["service","files","store document"],["viewer","files","signed output"],["service","events","record lifecycle"],["events","notify","status message"]]},
-  {"id":"document-builder","title":"Document-building service","summary":"Templates and data are combined through an API or scheduled worker, with storage adapters and an embedded management UI.","accent":"#be123c","nodes":[["editor","Template editor",55,90,"ui"],["app","Calling application",55,350,"service"],["api","Document API",285,220,"service"],["templates","Template repository",500,70,"data"],["data","Business data source",500,220,"data"],["builder","Merge engine",700,220,"worker"],["storage","Blob / file storage",900,100,"data"],["schedule","Recurring build worker",900,340,"worker"]],"edges":[["editor","templates","manage templates"],["app","api","build request"],["api","templates","load template"],["api","data","load parameters"],["api","builder","merge"],["builder","storage","save output"],["schedule","builder","scheduled merge"],["schedule","data","scheduled data"]]},
-  {"id":"identity-client","title":"Identity client layer","summary":"Reusable client libraries coordinate browser or device sign-in, OIDC redirects, token validation, access policies, and secured API calls.","accent":"#1d4ed8","nodes":[["user","User or device",55,220,"ui"],["client","Identity client",270,220,"service"],["oidc","OIDC redirect",470,80,"service"],["idp","Identity provider",690,80,"external"],["token","JWT validation",470,350,"service"],["policy","Authorization policy",690,350,"service"],["api","Protected API",910,220,"external"]],"edges":[["user","client","sign-in"],["client","oidc","challenge"],["oidc","idp","authenticate"],["idp","token","tokens"],["token","client","session"],["client","policy","access check"],["policy","api","authorized call"]]},
-  {"id":"identity-ui","title":"Identity management UI","summary":"Back-office administration and end-user self-service components call identity APIs for users, roles, devices, profiles, and recovery.","accent":"#9333ea","nodes":[["admin","Administrator",50,90,"ui"],["enduser","End user",50,360,"ui"],["adminui","Admin components",285,90,"ui"],["selfui","Self-service components",285,360,"ui"],["identityapi","Identity administration API",535,220,"service"],["idp","Identity platform",760,150,"external"],["email","Validation & recovery email",760,350,"external"],["store","Identity data",940,220,"data"]],"edges":[["admin","adminui","manage users"],["enduser","selfui","profile & recovery"],["adminui","identityapi","admin REST"],["selfui","identityapi","OIDC/self-service"],["identityapi","idp","identity operations"],["identityapi","email","verify & recover"],["idp","store","identity state"]]},
-  {"id":"tenant-identity","title":"Tenant identity deployment","summary":"Tenant discovery selects branding and realm behavior before the identity platform authenticates and returns an application session.","accent":"#0f766e","nodes":[["user","Tenant user",60,220,"ui"],["login","Branded sign-in",270,220,"ui"],["tenant","Tenant/theme resolver",485,100,"service"],["plugin","Identity extension",485,330,"service"],["keycloak","Identity server",720,220,"external"],["tokens","OIDC tokens",900,100,"data"],["apps","Tenant applications",900,350,"external"]],"edges":[["user","login","open sign-in"],["login","tenant","resolve tenant"],["tenant","plugin","select theme"],["plugin","keycloak","extend flow"],["login","keycloak","authenticate"],["keycloak","tokens","issue tokens"],["tokens","apps","create session"]]},
-  {"id":"authentication","title":"Authentication services","summary":"User and device authentication routes through modern identity endpoints while legacy administration remains isolated during migration.","accent":"#dc2626","nodes":[["device","Registered device",40,90,"ui"],["user","User browser",40,360,"ui"],["deviceapi","Device authentication API",270,90,"service"],["webclient","Web identity client",270,360,"service"],["modern","Modern identity provider",530,90,"external"],["legacy","Legacy identity suite",530,360,"external"],["jwt","Token & policy layer",760,220,"service"],["apps","Protected applications",940,220,"external"]],"edges":[["device","deviceapi","device credentials"],["user","webclient","interactive login"],["deviceapi","modern","device flow"],["webclient","modern","OIDC flow"],["webclient","legacy","migration fallback"],["modern","jwt","tokens"],["legacy","jwt","legacy tokens"],["jwt","apps","authorized session"]]},
-  {"id":"tenant-lifecycle","title":"Tenant lifecycle service","summary":"Tenant administrators request provisioning, which coordinates configuration, store assignment, secrets, and observable lifecycle status.","accent":"#059669","nodes":[["admin","Platform administrator",55,220,"ui"],["api","Tenant lifecycle API",270,220,"service"],["workflow","Provisioning workflow",485,220,"worker"],["config","Tenant configuration",700,60,"data"],["store","Data-store assignment",700,180,"data"],["secrets","Tenant secrets",700,300,"external"],["identity","Identity setup",700,420,"external"],["status","Lifecycle status",920,220,"data"]],"edges":[["admin","api","create/update tenant"],["api","workflow","start lifecycle"],["workflow","config","write settings"],["workflow","store","assign store"],["workflow","secrets","provision secrets"],["workflow","identity","provision identity"],["workflow","status","record progress"],["status","admin","show outcome"]]},
-  {"id":"secrets","title":"Secrets abstraction","summary":"Application services request secrets through one contract while authentication and provider adapters isolate the underlying vault implementation.","accent":"#b45309","nodes":[["service","Application service",60,220,"service"],["contract","Secret-store contract",290,220,"service"],["auth","Vault authentication",510,80,"service"],["adapter","Vault provider adapter",510,280,"worker"],["vault","Secure vault",760,220,"external"],["secret","Runtime secret value",930,220,"data"]],"edges":[["service","contract","request key"],["contract","auth","obtain access"],["auth","adapter","authorized context"],["contract","adapter","provider-neutral call"],["adapter","vault","read secret"],["vault","secret","return value"],["secret","service","in-memory use"]]},
-  {"id":"shared-data","title":"Shared data layer","summary":"Domain services use repositories and a common query runner while provider packages translate operations for SQL Server, MySQL, or embedded storage.","accent":"#475569","nodes":[["domain","Domain service",55,220,"service"],["repo","Repository contracts",275,110,"service"],["query","Query specification runner",275,330,"service"],["sqladapter","SQL Server provider",530,70,"worker"],["mysqladapter","MySQL provider",530,220,"worker"],["liteadapter","Embedded provider",530,370,"worker"],["sql","SQL Server",800,70,"data"],["mysql","MySQL",800,220,"data"],["lite","Embedded store",800,370,"data"]],"edges":[["domain","repo","entity operations"],["domain","query","queries"],["repo","sqladapter","provider"],["repo","mysqladapter","provider"],["repo","liteadapter","provider"],["query","sqladapter","translated query"],["query","mysqladapter","translated query"],["sqladapter","sql","execute"],["mysqladapter","mysql","execute"],["liteadapter","lite","execute"]]},
-  {"id":"identifier-service","title":"Identifier service","summary":"Services reserve tenant-scoped sequences or generated codes through a transactional repository with interchangeable storage providers.","accent":"#4f46e5","nodes":[["consumer","Consuming service",60,220,"service"],["api","Identifier API",285,220,"service"],["generator","Code generator",500,80,"worker"],["sequence","Tracked sequence coordinator",500,300,"worker"],["memory","In-memory provider",735,60,"data"],["sql","SQL provider",735,180,"data"],["mysql","MySQL provider",735,300,"data"],["lite","Embedded provider",735,420,"data"],["id","Reserved identifier",930,220,"external"]],"edges":[["consumer","api","request identifier"],["api","generator","random code"],["api","sequence","sequential code"],["sequence","memory","test provider"],["sequence","sql","transaction"],["sequence","mysql","transaction"],["sequence","lite","transaction"],["generator","id","generated value"],["sequence","id","reserved value"]]},
-  {"id":"data-import","title":"Data-import pipeline","summary":"Uploaded files are stored, matched to a template, dispatched to domain-specific jobs, bulk-loaded, and tracked through processing events.","accent":"#0891b2","nodes":[["user","Data uploader",45,220,"ui"],["upload","Upload & template UI",250,220,"ui"],["files","Shared file storage",460,70,"data"],["dispatcher","Job dispatcher",460,250,"worker"],["jobs","Domain transform jobs",670,100,"worker"],["bulk","Bulk database loader",670,300,"worker"],["db","Target database",900,100,"data"],["status","Processing status",900,330,"data"]],"edges":[["user","upload","choose file/template"],["upload","files","store input"],["upload","dispatcher","start job"],["files","jobs","read file"],["dispatcher","jobs","select transform"],["jobs","bulk","normalized rows"],["bulk","db","bulk write"],["jobs","status","stage events"],["status","upload","progress"]]},
-  {"id":"common-kernel","title":"Shared application kernel","summary":"A minimal dependency-free kernel supplies contracts, helpers, error types, and logging abstractions to services, web apps, and mobile apps.","accent":"#334155","nodes":[["contracts","Shared contracts",450,70,"service"],["helpers","Core helpers",250,220,"service"],["errors","Errors & results",450,220,"service"],["logging","Logging abstractions",650,220,"service"],["api","API services",180,410,"external"],["web","Web applications",390,410,"external"],["mobile","Mobile applications",600,410,"external"],["infra","Infrastructure packages",810,410,"external"]],"edges":[["contracts","helpers","common types"],["contracts","errors","result contracts"],["contracts","logging","log contracts"],["helpers","api","consume"],["errors","web","consume"],["logging","mobile","consume"],["logging","infra","consume"],["errors","infra","consume"]]},
-  {"id":"logging-search","title":"Logging and search utilities","summary":"Applications emit normalized logs through simple or structured adapters, then operators query indexed events for diagnostics.","accent":"#0e7490","nodes":[["apps","Applications",55,220,"service"],["contract","Logging contract",270,220,"service"],["simple","Console/file logger",500,90,"worker"],["structured","Structured log adapter",500,310,"worker"],["files","Local logs",730,90,"data"],["index","Central log index",730,310,"data"],["search","Diagnostic search",930,220,"ui"]],"edges":[["apps","contract","emit event"],["contract","simple","local route"],["contract","structured","structured route"],["simple","files","write"],["structured","index","publish"],["files","search","inspect"],["index","search","query"]]},
-  {"id":"xml-viewer","title":"Reusable XML viewer","summary":"A focused Blazor component accepts structured XML, parses it safely, and exposes navigable tree and detail views for review.","accent":"#7c3aed","nodes":[["input","XML input",70,220,"data"],["component","Viewer component",300,220,"ui"],["parser","XML parser",520,100,"service"],["model","Structured node model",520,330,"data"],["tree","Tree navigation",760,100,"ui"],["detail","Element detail view",760,330,"ui"],["user","Reviewer",930,220,"external"]],"edges":[["input","component","load content"],["component","parser","parse"],["parser","model","build nodes"],["model","tree","hierarchy"],["model","detail","selected values"],["tree","user","navigate"],["detail","user","inspect"]]}
+  {
+    "id": "erp-modernization",
+    "title": "Multi-tenant ERP operations, ordering & reporting platform",
+    "summary": "A multi-surface ERP replacement with independently scalable business services, reporting, and operational integrations.",
+    "accent": "#2563eb",
+    "nodes": [
+      [
+        "staff",
+        "Staff workspace",
+        70,
+        90,
+        "ui"
+      ],
+      [
+        "portal",
+        "Customer portal",
+        70,
+        330,
+        "ui"
+      ],
+      [
+        "host",
+        "Web application host",
+        320,
+        210,
+        "service"
+      ],
+      [
+        "read",
+        "Read/query service",
+        570,
+        90,
+        "service"
+      ],
+      [
+        "write",
+        "Write/workflow service",
+        570,
+        250,
+        "worker"
+      ],
+      [
+        "report",
+        "Report generator",
+        570,
+        410,
+        "worker"
+      ],
+      [
+        "data",
+        "Operational data store",
+        820,
+        170,
+        "data"
+      ],
+      [
+        "bus",
+        "Message broker",
+        820,
+        350,
+        "queue"
+      ]
+    ],
+    "edges": [
+      [
+        "staff",
+        "host",
+        "interactive work"
+      ],
+      [
+        "portal",
+        "host",
+        "customer requests"
+      ],
+      [
+        "host",
+        "read",
+        "queries"
+      ],
+      [
+        "host",
+        "write",
+        "commands"
+      ],
+      [
+        "host",
+        "report",
+        "reports"
+      ],
+      [
+        "read",
+        "data",
+        "read models"
+      ],
+      [
+        "write",
+        "data",
+        "transactions"
+      ],
+      [
+        "write",
+        "bus",
+        "async work"
+      ],
+      [
+        "bus",
+        "report",
+        "scheduled output"
+      ]
+    ]
+  },
+  {
+    "id": "case-workflow",
+    "title": "Public intake, case management & document workflow",
+    "summary": "Public intake and staff case management coordinated through CQRS, event history, document storage, and notifications.",
+    "accent": "#7c3aed",
+    "nodes": [
+      [
+        "intake",
+        "Public intake",
+        60,
+        90,
+        "ui"
+      ],
+      [
+        "staff",
+        "Staff case workspace",
+        60,
+        350,
+        "ui"
+      ],
+      [
+        "api",
+        "Case command API",
+        300,
+        210,
+        "service"
+      ],
+      [
+        "events",
+        "Event history",
+        540,
+        80,
+        "data"
+      ],
+      [
+        "views",
+        "Case read models",
+        540,
+        250,
+        "data"
+      ],
+      [
+        "docs",
+        "Document storage",
+        540,
+        420,
+        "data"
+      ],
+      [
+        "notify",
+        "Notification pipeline",
+        790,
+        120,
+        "queue"
+      ],
+      [
+        "external",
+        "Meeting & signing services",
+        790,
+        350,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "intake",
+        "api",
+        "submit case"
+      ],
+      [
+        "staff",
+        "api",
+        "manage case"
+      ],
+      [
+        "api",
+        "events",
+        "append events"
+      ],
+      [
+        "events",
+        "views",
+        "project state"
+      ],
+      [
+        "api",
+        "docs",
+        "store documents"
+      ],
+      [
+        "events",
+        "notify",
+        "trigger reminders"
+      ],
+      [
+        "api",
+        "external",
+        "schedule & sign"
+      ],
+      [
+        "external",
+        "views",
+        "integration status"
+      ]
+    ]
+  },
+  {
+    "id": "print-suite",
+    "title": "Commercial printing, quoting & production management suite",
+    "summary": "Customer ordering and internal production work converge in a composed web experience with catalog, document, and print services.",
+    "accent": "#db2777",
+    "nodes": [
+      [
+        "customer",
+        "Customer ordering",
+        55,
+        90,
+        "ui"
+      ],
+      [
+        "team",
+        "Production workspace",
+        55,
+        360,
+        "ui"
+      ],
+      [
+        "shell",
+        "Composed web shell",
+        280,
+        210,
+        "service"
+      ],
+      [
+        "catalog",
+        "Catalog & quoting",
+        500,
+        70,
+        "service"
+      ],
+      [
+        "orders",
+        "Order workflow",
+        500,
+        215,
+        "worker"
+      ],
+      [
+        "documents",
+        "Document builder",
+        500,
+        370,
+        "worker"
+      ],
+      [
+        "production",
+        "Production queue",
+        760,
+        120,
+        "queue"
+      ],
+      [
+        "store",
+        "Business data",
+        760,
+        320,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "customer",
+        "shell",
+        "browse & order"
+      ],
+      [
+        "team",
+        "shell",
+        "manage work"
+      ],
+      [
+        "shell",
+        "catalog",
+        "products & prices"
+      ],
+      [
+        "shell",
+        "orders",
+        "submit jobs"
+      ],
+      [
+        "orders",
+        "production",
+        "queue work"
+      ],
+      [
+        "orders",
+        "documents",
+        "build output"
+      ],
+      [
+        "catalog",
+        "store",
+        "catalog data"
+      ],
+      [
+        "orders",
+        "store",
+        "order state"
+      ],
+      [
+        "documents",
+        "production",
+        "print assets"
+      ]
+    ]
+  },
+  {
+    "id": "inventory-ordering",
+    "title": "Mobile inventory counting & replenishment platform",
+    "summary": "Mobile counting, browser operations, ordering, and assistant queries share an inventory domain and multi-tenant data layer.",
+    "accent": "#059669",
+    "nodes": [
+      [
+        "mobile",
+        "Mobile counting app",
+        60,
+        80,
+        "ui"
+      ],
+      [
+        "web",
+        "Browser operations",
+        60,
+        240,
+        "ui"
+      ],
+      [
+        "assistant",
+        "Assistant query surface",
+        60,
+        405,
+        "ui"
+      ],
+      [
+        "api",
+        "Inventory APIs",
+        315,
+        220,
+        "service"
+      ],
+      [
+        "domain",
+        "Counting & ordering domain",
+        540,
+        220,
+        "worker"
+      ],
+      [
+        "tenant",
+        "Tenant context",
+        540,
+        70,
+        "service"
+      ],
+      [
+        "store",
+        "Inventory stores",
+        800,
+        170,
+        "data"
+      ],
+      [
+        "print",
+        "Reports & labels",
+        800,
+        360,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "mobile",
+        "api",
+        "counts & scans"
+      ],
+      [
+        "web",
+        "api",
+        "orders & review"
+      ],
+      [
+        "assistant",
+        "api",
+        "read-only queries"
+      ],
+      [
+        "api",
+        "tenant",
+        "resolve tenant"
+      ],
+      [
+        "api",
+        "domain",
+        "business commands"
+      ],
+      [
+        "domain",
+        "store",
+        "stock state"
+      ],
+      [
+        "domain",
+        "print",
+        "operational output"
+      ],
+      [
+        "tenant",
+        "store",
+        "store selection"
+      ]
+    ]
+  },
+  {
+    "id": "saas-shell",
+    "title": "Modular multi-tenant operations SaaS platform",
+    "summary": "A host application composes independently delivered operational modules while centralizing identity, jobs, messaging, and reporting.",
+    "accent": "#ea580c",
+    "nodes": [
+      [
+        "browser",
+        "Authenticated browser",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "shell",
+        "Application shell",
+        285,
+        220,
+        "service"
+      ],
+      [
+        "modules",
+        "Micro-frontends",
+        500,
+        70,
+        "ui"
+      ],
+      [
+        "reports",
+        "Reporting module",
+        500,
+        220,
+        "service"
+      ],
+      [
+        "jobs",
+        "Background jobs",
+        500,
+        380,
+        "worker"
+      ],
+      [
+        "identity",
+        "Identity provider",
+        750,
+        60,
+        "external"
+      ],
+      [
+        "bus",
+        "Message bus",
+        750,
+        220,
+        "queue"
+      ],
+      [
+        "sql",
+        "Shared operational store",
+        750,
+        390,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "browser",
+        "shell",
+        "secure session"
+      ],
+      [
+        "shell",
+        "identity",
+        "OIDC"
+      ],
+      [
+        "shell",
+        "modules",
+        "load fragments"
+      ],
+      [
+        "shell",
+        "reports",
+        "compose reports"
+      ],
+      [
+        "shell",
+        "jobs",
+        "schedule work"
+      ],
+      [
+        "modules",
+        "bus",
+        "domain messages"
+      ],
+      [
+        "jobs",
+        "bus",
+        "workflow messages"
+      ],
+      [
+        "reports",
+        "sql",
+        "report data"
+      ],
+      [
+        "jobs",
+        "sql",
+        "job state"
+      ]
+    ]
+  },
+  {
+    "id": "public-intake",
+    "title": "Regional public-service intake & case routing portal",
+    "summary": "A public submission moves through validation, regional routing, document storage, staff review, and scheduled reporting.",
+    "accent": "#0891b2",
+    "nodes": [
+      [
+        "public",
+        "Public form",
+        70,
+        220,
+        "ui"
+      ],
+      [
+        "validate",
+        "Validation & eligibility",
+        280,
+        220,
+        "service"
+      ],
+      [
+        "route",
+        "Regional case routing",
+        490,
+        220,
+        "worker"
+      ],
+      [
+        "staff",
+        "Staff review",
+        710,
+        70,
+        "ui"
+      ],
+      [
+        "blob",
+        "Document storage",
+        710,
+        220,
+        "data"
+      ],
+      [
+        "notify",
+        "Notification service",
+        710,
+        370,
+        "queue"
+      ],
+      [
+        "report",
+        "Report generator",
+        900,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "public",
+        "validate",
+        "submit intake"
+      ],
+      [
+        "validate",
+        "route",
+        "accepted request"
+      ],
+      [
+        "route",
+        "staff",
+        "assigned case"
+      ],
+      [
+        "route",
+        "blob",
+        "uploaded files"
+      ],
+      [
+        "route",
+        "notify",
+        "confirmation"
+      ],
+      [
+        "staff",
+        "report",
+        "case report"
+      ],
+      [
+        "blob",
+        "report",
+        "document data"
+      ]
+    ]
+  },
+  {
+    "id": "ticketing",
+    "title": "Event-sourced service ticket & field task platform",
+    "summary": "Web, task-focused, and mobile surfaces share ticket commands, event history, read models, recurring work, and resilient messaging.",
+    "accent": "#4f46e5",
+    "nodes": [
+      [
+        "web",
+        "Service desk",
+        45,
+        80,
+        "ui"
+      ],
+      [
+        "task",
+        "Task workspace",
+        45,
+        240,
+        "ui"
+      ],
+      [
+        "mobile",
+        "Mobile component",
+        45,
+        400,
+        "ui"
+      ],
+      [
+        "api",
+        "Ticket API",
+        270,
+        220,
+        "service"
+      ],
+      [
+        "cqrs",
+        "Command/event core",
+        500,
+        220,
+        "worker"
+      ],
+      [
+        "eventstore",
+        "Event store",
+        725,
+        80,
+        "data"
+      ],
+      [
+        "read",
+        "SQL/MySQL read data",
+        725,
+        240,
+        "data"
+      ],
+      [
+        "recurring",
+        "Recurring task worker",
+        725,
+        400,
+        "worker"
+      ],
+      [
+        "bus",
+        "Service bus",
+        920,
+        220,
+        "queue"
+      ]
+    ],
+    "edges": [
+      [
+        "web",
+        "api",
+        "ticket requests"
+      ],
+      [
+        "task",
+        "api",
+        "task updates"
+      ],
+      [
+        "mobile",
+        "api",
+        "field actions"
+      ],
+      [
+        "api",
+        "cqrs",
+        "commands"
+      ],
+      [
+        "cqrs",
+        "eventstore",
+        "events"
+      ],
+      [
+        "eventstore",
+        "read",
+        "projections"
+      ],
+      [
+        "cqrs",
+        "bus",
+        "notifications"
+      ],
+      [
+        "recurring",
+        "cqrs",
+        "scheduled commands"
+      ],
+      [
+        "bus",
+        "recurring",
+        "queued work"
+      ]
+    ]
+  },
+  {
+    "id": "field-companion",
+    "title": "Mobile field time, notes & ticket companion",
+    "summary": "A mobile container presents time, notes, and tickets as coordinated modules backed by their existing service APIs.",
+    "accent": "#16a34a",
+    "nodes": [
+      [
+        "worker",
+        "Field worker",
+        65,
+        220,
+        "ui"
+      ],
+      [
+        "container",
+        "Mobile container",
+        290,
+        220,
+        "ui"
+      ],
+      [
+        "time",
+        "Time module",
+        530,
+        70,
+        "service"
+      ],
+      [
+        "notes",
+        "Notes module",
+        530,
+        220,
+        "service"
+      ],
+      [
+        "tickets",
+        "Ticket module",
+        530,
+        370,
+        "service"
+      ],
+      [
+        "gateway",
+        "Secure service gateway",
+        760,
+        220,
+        "service"
+      ],
+      [
+        "systems",
+        "Operational services",
+        930,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "worker",
+        "container",
+        "mobile session"
+      ],
+      [
+        "container",
+        "time",
+        "time entry"
+      ],
+      [
+        "container",
+        "notes",
+        "field notes"
+      ],
+      [
+        "container",
+        "tickets",
+        "service tasks"
+      ],
+      [
+        "time",
+        "gateway",
+        "API calls"
+      ],
+      [
+        "notes",
+        "gateway",
+        "API calls"
+      ],
+      [
+        "tickets",
+        "gateway",
+        "API calls"
+      ],
+      [
+        "gateway",
+        "systems",
+        "persist work"
+      ]
+    ]
+  },
+  {
+    "id": "crm-journey",
+    "title": "Customer journey, interaction & messaging workspace",
+    "summary": "Customer journey interactions are captured as events, projected into working views, and coordinated with notes and messaging.",
+    "accent": "#c026d3",
+    "nodes": [
+      [
+        "team",
+        "Relationship team",
+        70,
+        220,
+        "ui"
+      ],
+      [
+        "crm",
+        "CRM workspace",
+        290,
+        220,
+        "ui"
+      ],
+      [
+        "commands",
+        "Journey commands",
+        500,
+        110,
+        "service"
+      ],
+      [
+        "events",
+        "Customer event stream",
+        700,
+        110,
+        "data"
+      ],
+      [
+        "views",
+        "Journey read model",
+        700,
+        330,
+        "data"
+      ],
+      [
+        "notes",
+        "Notes integration",
+        500,
+        330,
+        "external"
+      ],
+      [
+        "messages",
+        "Message broker",
+        900,
+        220,
+        "queue"
+      ]
+    ],
+    "edges": [
+      [
+        "team",
+        "crm",
+        "customer work"
+      ],
+      [
+        "crm",
+        "commands",
+        "record interaction"
+      ],
+      [
+        "commands",
+        "events",
+        "append event"
+      ],
+      [
+        "events",
+        "views",
+        "build journey"
+      ],
+      [
+        "crm",
+        "views",
+        "read history"
+      ],
+      [
+        "crm",
+        "notes",
+        "linked notes"
+      ],
+      [
+        "events",
+        "messages",
+        "publish change"
+      ],
+      [
+        "messages",
+        "notes",
+        "coordinate update"
+      ]
+    ]
+  },
+  {
+    "id": "deployment-console",
+    "title": "Policy-gated infrastructure deployment console",
+    "summary": "Every requested infrastructure action passes a risk policy gate before a specialized adapter can touch a target, with audit state retained.",
+    "accent": "#dc2626",
+    "nodes": [
+      [
+        "operator",
+        "Operator",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "console",
+        "Operations console",
+        260,
+        220,
+        "ui"
+      ],
+      [
+        "policy",
+        "Policy gate",
+        465,
+        220,
+        "service"
+      ],
+      [
+        "audit",
+        "Audit record",
+        465,
+        410,
+        "data"
+      ],
+      [
+        "k8s",
+        "Cluster adapter",
+        700,
+        60,
+        "worker"
+      ],
+      [
+        "sql",
+        "Database adapter",
+        700,
+        180,
+        "worker"
+      ],
+      [
+        "ssh",
+        "Host adapter",
+        700,
+        300,
+        "worker"
+      ],
+      [
+        "tickets",
+        "Ticket adapter",
+        700,
+        420,
+        "worker"
+      ],
+      [
+        "targets",
+        "Managed environments",
+        915,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "operator",
+        "console",
+        "request action"
+      ],
+      [
+        "console",
+        "policy",
+        "evaluate risk"
+      ],
+      [
+        "policy",
+        "audit",
+        "record decision"
+      ],
+      [
+        "policy",
+        "k8s",
+        "approved cluster action"
+      ],
+      [
+        "policy",
+        "sql",
+        "approved data action"
+      ],
+      [
+        "policy",
+        "ssh",
+        "approved host action"
+      ],
+      [
+        "policy",
+        "tickets",
+        "approved ticket action"
+      ],
+      [
+        "k8s",
+        "targets",
+        "execute"
+      ],
+      [
+        "sql",
+        "targets",
+        "execute"
+      ],
+      [
+        "ssh",
+        "targets",
+        "execute"
+      ],
+      [
+        "tickets",
+        "targets",
+        "execute"
+      ]
+    ]
+  },
+  {
+    "id": "event-explorer",
+    "title": "Read-only event-store timeline & diagnostics explorer",
+    "summary": "Support users and tooling query a read-only API that reconstructs operational timelines without mutating the source event store.",
+    "accent": "#0f766e",
+    "nodes": [
+      [
+        "support",
+        "Support user",
+        70,
+        120,
+        "ui"
+      ],
+      [
+        "tool",
+        "Assistant tooling",
+        70,
+        360,
+        "ui"
+      ],
+      [
+        "viewer",
+        "History viewer",
+        310,
+        120,
+        "ui"
+      ],
+      [
+        "toolapi",
+        "Query tool server",
+        310,
+        360,
+        "service"
+      ],
+      [
+        "api",
+        "Read-only JSON API",
+        560,
+        220,
+        "service"
+      ],
+      [
+        "store",
+        "Event store",
+        805,
+        220,
+        "data"
+      ],
+      [
+        "timeline",
+        "Reconstructed timeline",
+        805,
+        410,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "support",
+        "viewer",
+        "select aggregate"
+      ],
+      [
+        "tool",
+        "toolapi",
+        "structured query"
+      ],
+      [
+        "viewer",
+        "api",
+        "history request"
+      ],
+      [
+        "toolapi",
+        "api",
+        "history request"
+      ],
+      [
+        "api",
+        "store",
+        "read events"
+      ],
+      [
+        "store",
+        "timeline",
+        "ordered stream"
+      ],
+      [
+        "timeline",
+        "viewer",
+        "render timeline"
+      ]
+    ]
+  },
+  {
+    "id": "client-portal",
+    "title": "Mobile client progress, documents & messaging portal",
+    "summary": "A mobile-first portal combines secure access, progress data, documents, and outbound updates for service clients.",
+    "accent": "#9333ea",
+    "nodes": [
+      [
+        "client",
+        "Mobile client",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "portal",
+        "Responsive portal",
+        280,
+        220,
+        "ui"
+      ],
+      [
+        "identity",
+        "Identity service",
+        500,
+        70,
+        "external"
+      ],
+      [
+        "process",
+        "Client process API",
+        500,
+        220,
+        "service"
+      ],
+      [
+        "docs",
+        "Document service",
+        500,
+        380,
+        "service"
+      ],
+      [
+        "store",
+        "Client data",
+        760,
+        150,
+        "data"
+      ],
+      [
+        "updates",
+        "Update notifications",
+        760,
+        330,
+        "queue"
+      ]
+    ],
+    "edges": [
+      [
+        "client",
+        "portal",
+        "secure visit"
+      ],
+      [
+        "portal",
+        "identity",
+        "authenticate"
+      ],
+      [
+        "portal",
+        "process",
+        "progress requests"
+      ],
+      [
+        "portal",
+        "docs",
+        "document requests"
+      ],
+      [
+        "process",
+        "store",
+        "status data"
+      ],
+      [
+        "docs",
+        "store",
+        "document metadata"
+      ],
+      [
+        "process",
+        "updates",
+        "status changed"
+      ],
+      [
+        "updates",
+        "client",
+        "notify"
+      ]
+    ]
+  },
+  {
+    "id": "receivables-wasm",
+    "title": "Browser-based high-volume receivables entry tool",
+    "summary": "Browser-side caching and queued background posting keep rapid keyboard entry responsive while the API owns validation, reporting, and persistence.",
+    "accent": "#0284c7",
+    "nodes": [
+      [
+        "clerk",
+        "Accounts clerk",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "wasm",
+        "WASM entry grid",
+        265,
+        220,
+        "ui"
+      ],
+      [
+        "cache",
+        "Browser cache",
+        470,
+        80,
+        "data"
+      ],
+      [
+        "worker",
+        "Background post queue",
+        470,
+        300,
+        "worker"
+      ],
+      [
+        "api",
+        "Receivables API",
+        680,
+        220,
+        "service"
+      ],
+      [
+        "store",
+        "SQL/MySQL",
+        890,
+        110,
+        "data"
+      ],
+      [
+        "report",
+        "Reports & printing",
+        890,
+        330,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "clerk",
+        "wasm",
+        "ten-key entry"
+      ],
+      [
+        "wasm",
+        "cache",
+        "instant local state"
+      ],
+      [
+        "cache",
+        "worker",
+        "queue changes"
+      ],
+      [
+        "worker",
+        "api",
+        "batch posts"
+      ],
+      [
+        "api",
+        "store",
+        "validated entries"
+      ],
+      [
+        "api",
+        "report",
+        "render output"
+      ],
+      [
+        "store",
+        "wasm",
+        "reference data"
+      ]
+    ]
+  },
+  {
+    "id": "label-workflow",
+    "title": "Batch label generation & print operations workflow",
+    "summary": "A thin browser client requests label data and rendering from an API, previews PDF output, then dispatches a printer-ready job.",
+    "accent": "#d97706",
+    "nodes": [
+      [
+        "operator",
+        "Label operator",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "wasm",
+        "Browser label app",
+        270,
+        220,
+        "ui"
+      ],
+      [
+        "api",
+        "Label API",
+        490,
+        220,
+        "service"
+      ],
+      [
+        "data",
+        "Product data",
+        700,
+        70,
+        "data"
+      ],
+      [
+        "rdlc",
+        "Label report renderer",
+        700,
+        220,
+        "worker"
+      ],
+      [
+        "preview",
+        "PDF preview",
+        700,
+        380,
+        "ui"
+      ],
+      [
+        "printer",
+        "Label printer",
+        910,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "operator",
+        "wasm",
+        "choose batch"
+      ],
+      [
+        "wasm",
+        "api",
+        "request labels"
+      ],
+      [
+        "api",
+        "data",
+        "load records"
+      ],
+      [
+        "api",
+        "rdlc",
+        "render batch"
+      ],
+      [
+        "rdlc",
+        "preview",
+        "return PDF"
+      ],
+      [
+        "preview",
+        "wasm",
+        "review"
+      ],
+      [
+        "rdlc",
+        "printer",
+        "print dispatch"
+      ]
+    ]
+  },
+  {
+    "id": "calculators",
+    "title": "Browser-based financial calculation & reporting workspace",
+    "summary": "Validated browser inputs are calculated against stored business rules and can be rendered as auditable reports.",
+    "accent": "#be123c",
+    "nodes": [
+      [
+        "advisor",
+        "Advisor",
+        70,
+        220,
+        "ui"
+      ],
+      [
+        "form",
+        "Calculation form",
+        300,
+        220,
+        "ui"
+      ],
+      [
+        "validation",
+        "Rule validation",
+        510,
+        90,
+        "service"
+      ],
+      [
+        "engine",
+        "Calculation engine",
+        510,
+        260,
+        "worker"
+      ],
+      [
+        "sql",
+        "Stored procedures",
+        740,
+        120,
+        "data"
+      ],
+      [
+        "report",
+        "Report generator",
+        740,
+        340,
+        "worker"
+      ],
+      [
+        "pdf",
+        "PDF result",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "advisor",
+        "form",
+        "enter values"
+      ],
+      [
+        "form",
+        "validation",
+        "validate"
+      ],
+      [
+        "validation",
+        "engine",
+        "accepted inputs"
+      ],
+      [
+        "engine",
+        "sql",
+        "apply stored rules"
+      ],
+      [
+        "engine",
+        "report",
+        "calculation result"
+      ],
+      [
+        "sql",
+        "report",
+        "reference data"
+      ],
+      [
+        "report",
+        "pdf",
+        "render"
+      ],
+      [
+        "pdf",
+        "advisor",
+        "download"
+      ]
+    ]
+  },
+  {
+    "id": "airport-operations",
+    "title": "Airport reservation, billing & operations platform",
+    "summary": "Real-time web and mobile operations send commands through messaging and event sourcing, then consume dedicated read, search, and notification models.",
+    "accent": "#1d4ed8",
+    "nodes": [
+      [
+        "web",
+        "Operations web",
+        40,
+        80,
+        "ui"
+      ],
+      [
+        "mobile",
+        "Valet mobile",
+        40,
+        240,
+        "ui"
+      ],
+      [
+        "customer",
+        "Customer mobile",
+        40,
+        400,
+        "ui"
+      ],
+      [
+        "api",
+        "Operations API",
+        250,
+        220,
+        "service"
+      ],
+      [
+        "commands",
+        "CQRS command handlers",
+        470,
+        220,
+        "worker"
+      ],
+      [
+        "rabbit",
+        "Message broker",
+        670,
+        80,
+        "queue"
+      ],
+      [
+        "events",
+        "Event store",
+        670,
+        220,
+        "data"
+      ],
+      [
+        "read",
+        "Document read models",
+        670,
+        390,
+        "data"
+      ],
+      [
+        "search",
+        "Search index",
+        890,
+        110,
+        "data"
+      ],
+      [
+        "push",
+        "Push notifications",
+        890,
+        330,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "web",
+        "api",
+        "manage operation"
+      ],
+      [
+        "mobile",
+        "api",
+        "valet updates"
+      ],
+      [
+        "customer",
+        "api",
+        "reservation status"
+      ],
+      [
+        "api",
+        "commands",
+        "commands"
+      ],
+      [
+        "commands",
+        "events",
+        "append events"
+      ],
+      [
+        "commands",
+        "rabbit",
+        "publish work"
+      ],
+      [
+        "events",
+        "read",
+        "project state"
+      ],
+      [
+        "read",
+        "search",
+        "index"
+      ],
+      [
+        "rabbit",
+        "push",
+        "notify devices"
+      ],
+      [
+        "read",
+        "api",
+        "query results"
+      ]
+    ]
+  },
+  {
+    "id": "warehouse",
+    "title": "Desktop warehouse inventory, invoicing & reporting system",
+    "summary": "A desktop warehouse client calls a classic web service over a central SQL model, with reporting and an external SOAP integration.",
+    "accent": "#475569",
+    "nodes": [
+      [
+        "staff",
+        "Warehouse staff",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "desktop",
+        "WinForms client",
+        270,
+        220,
+        "ui"
+      ],
+      [
+        "asmx",
+        "ASMX web service",
+        500,
+        220,
+        "service"
+      ],
+      [
+        "sql",
+        "Warehouse SQL database",
+        740,
+        130,
+        "data"
+      ],
+      [
+        "reports",
+        "Invoices & reports",
+        740,
+        340,
+        "external"
+      ],
+      [
+        "soap",
+        "External SOAP service",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "staff",
+        "desktop",
+        "inventory & billing"
+      ],
+      [
+        "desktop",
+        "asmx",
+        "service calls"
+      ],
+      [
+        "asmx",
+        "sql",
+        "warehouse data"
+      ],
+      [
+        "sql",
+        "reports",
+        "report datasets"
+      ],
+      [
+        "desktop",
+        "reports",
+        "print output"
+      ],
+      [
+        "desktop",
+        "soap",
+        "partner lookup"
+      ]
+    ]
+  },
+  {
+    "id": "referral-platform",
+    "title": "Dealer lead distribution & referral reporting platform",
+    "summary": "Legacy referral intake assigns leads to dealers, tracks fulfillment in SQL, and feeds scheduled operational reporting.",
+    "accent": "#15803d",
+    "nodes": [
+      [
+        "consumer",
+        "Referral intake",
+        60,
+        100,
+        "ui"
+      ],
+      [
+        "operator",
+        "Operations desktop",
+        60,
+        350,
+        "ui"
+      ],
+      [
+        "web",
+        "Legacy web application",
+        300,
+        180,
+        "service"
+      ],
+      [
+        "assign",
+        "Dealer assignment",
+        510,
+        180,
+        "worker"
+      ],
+      [
+        "sql",
+        "Referral database",
+        720,
+        180,
+        "data"
+      ],
+      [
+        "ssis",
+        "Reporting pipeline",
+        720,
+        360,
+        "worker"
+      ],
+      [
+        "dealer",
+        "Dealer network",
+        920,
+        80,
+        "external"
+      ],
+      [
+        "reports",
+        "Operational reports",
+        920,
+        360,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "consumer",
+        "web",
+        "submit referral"
+      ],
+      [
+        "operator",
+        "web",
+        "manage referral"
+      ],
+      [
+        "web",
+        "assign",
+        "route lead"
+      ],
+      [
+        "assign",
+        "dealer",
+        "send lead"
+      ],
+      [
+        "assign",
+        "sql",
+        "save assignment"
+      ],
+      [
+        "sql",
+        "ssis",
+        "extract"
+      ],
+      [
+        "ssis",
+        "reports",
+        "publish"
+      ],
+      [
+        "dealer",
+        "sql",
+        "fulfillment status"
+      ]
+    ]
+  },
+  {
+    "id": "legacy-portal",
+    "title": "Role-aware client product & service portal modernization",
+    "summary": "A role-aware legacy portal centralizes login, authorization, client workflows, and SQL-backed service records.",
+    "accent": "#0369a1",
+    "nodes": [
+      [
+        "client",
+        "Portal user",
+        70,
+        220,
+        "ui"
+      ],
+      [
+        "login",
+        "Forms authentication",
+        285,
+        100,
+        "service"
+      ],
+      [
+        "portal",
+        "Web Forms portal",
+        285,
+        300,
+        "ui"
+      ],
+      [
+        "roles",
+        "Role authorization",
+        510,
+        100,
+        "service"
+      ],
+      [
+        "workflow",
+        "Client workflows",
+        510,
+        300,
+        "worker"
+      ],
+      [
+        "sql",
+        "SQL data store",
+        760,
+        220,
+        "data"
+      ],
+      [
+        "output",
+        "Portal results",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "client",
+        "login",
+        "sign in"
+      ],
+      [
+        "login",
+        "roles",
+        "resolve access"
+      ],
+      [
+        "roles",
+        "portal",
+        "authorized session"
+      ],
+      [
+        "client",
+        "portal",
+        "use portal"
+      ],
+      [
+        "portal",
+        "workflow",
+        "request service"
+      ],
+      [
+        "workflow",
+        "sql",
+        "read/write"
+      ],
+      [
+        "sql",
+        "output",
+        "status data"
+      ],
+      [
+        "output",
+        "portal",
+        "display"
+      ]
+    ]
+  },
+  {
+    "id": "data-utilities",
+    "title": "Desktop data cleansing, conversion & export toolkit",
+    "summary": "Desktop and command-line tools parse payroll, spreadsheet, PDF, and text inputs into validated, cleaned exports.",
+    "accent": "#a21caf",
+    "nodes": [
+      [
+        "files",
+        "CSV / Excel / PDF inputs",
+        50,
+        220,
+        "data"
+      ],
+      [
+        "gui",
+        "Desktop GUI",
+        265,
+        100,
+        "ui"
+      ],
+      [
+        "cli",
+        "Command line",
+        265,
+        340,
+        "ui"
+      ],
+      [
+        "parse",
+        "Format parsers",
+        485,
+        220,
+        "service"
+      ],
+      [
+        "rules",
+        "Validation & scrub rules",
+        690,
+        220,
+        "worker"
+      ],
+      [
+        "reference",
+        "Reference data",
+        690,
+        410,
+        "data"
+      ],
+      [
+        "exports",
+        "Clean exports",
+        910,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "files",
+        "gui",
+        "select files"
+      ],
+      [
+        "files",
+        "cli",
+        "batch input"
+      ],
+      [
+        "gui",
+        "parse",
+        "load"
+      ],
+      [
+        "cli",
+        "parse",
+        "load"
+      ],
+      [
+        "parse",
+        "rules",
+        "normalized rows"
+      ],
+      [
+        "reference",
+        "rules",
+        "exclusions & mappings"
+      ],
+      [
+        "rules",
+        "exports",
+        "write output"
+      ]
+    ]
+  },
+  {
+    "id": "record-engine",
+    "title": "Configurable records, forms & workflow engine",
+    "summary": "Reusable Blazor forms separate read and write APIs, plug workflow hooks into mutations, and support multiple data sources.",
+    "accent": "#0d9488",
+    "nodes": [
+      [
+        "host",
+        "Consuming application",
+        45,
+        220,
+        "ui"
+      ],
+      [
+        "components",
+        "Reusable grid & forms",
+        250,
+        220,
+        "ui"
+      ],
+      [
+        "query",
+        "Query API",
+        485,
+        90,
+        "service"
+      ],
+      [
+        "write",
+        "Write API",
+        485,
+        300,
+        "service"
+      ],
+      [
+        "hooks",
+        "Before/after workflow hooks",
+        690,
+        390,
+        "worker"
+      ],
+      [
+        "sql",
+        "SQL source",
+        890,
+        80,
+        "data"
+      ],
+      [
+        "mysql",
+        "MySQL source",
+        890,
+        220,
+        "data"
+      ],
+      [
+        "excel",
+        "Spreadsheet source",
+        890,
+        360,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "host",
+        "components",
+        "embed UI"
+      ],
+      [
+        "components",
+        "query",
+        "reads"
+      ],
+      [
+        "components",
+        "write",
+        "mutations"
+      ],
+      [
+        "write",
+        "hooks",
+        "business extensions"
+      ],
+      [
+        "query",
+        "sql",
+        "query"
+      ],
+      [
+        "query",
+        "mysql",
+        "query"
+      ],
+      [
+        "query",
+        "excel",
+        "query"
+      ],
+      [
+        "write",
+        "sql",
+        "persist"
+      ],
+      [
+        "write",
+        "mysql",
+        "persist"
+      ]
+    ]
+  },
+  {
+    "id": "event-foundation",
+    "title": "CQRS event workflow, projections & audit foundation",
+    "summary": "Commands load an aggregate, append immutable events, project read models, and publish integration events through a selectable backend.",
+    "accent": "#6d28d9",
+    "nodes": [
+      [
+        "command",
+        "Domain command",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "handler",
+        "Command handler",
+        270,
+        220,
+        "service"
+      ],
+      [
+        "aggregate",
+        "Domain aggregate",
+        480,
+        220,
+        "worker"
+      ],
+      [
+        "eventdb",
+        "Event-stream backend",
+        700,
+        90,
+        "data"
+      ],
+      [
+        "sql",
+        "SQL event backend",
+        700,
+        350,
+        "data"
+      ],
+      [
+        "projection",
+        "Projection workers",
+        890,
+        220,
+        "worker"
+      ],
+      [
+        "read",
+        "Read models",
+        890,
+        420,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "command",
+        "handler",
+        "dispatch"
+      ],
+      [
+        "handler",
+        "aggregate",
+        "load & decide"
+      ],
+      [
+        "aggregate",
+        "eventdb",
+        "append events"
+      ],
+      [
+        "aggregate",
+        "sql",
+        "alternate backend"
+      ],
+      [
+        "eventdb",
+        "projection",
+        "event stream"
+      ],
+      [
+        "sql",
+        "projection",
+        "event stream"
+      ],
+      [
+        "projection",
+        "read",
+        "build views"
+      ]
+    ]
+  },
+  {
+    "id": "service-foundation",
+    "title": "Shared service hosting, security & caching foundation",
+    "summary": "A standardized service host composes configuration, secrets, authentication, tenancy, caching, diagnostics, and the application endpoint.",
+    "accent": "#2563eb",
+    "nodes": [
+      [
+        "host",
+        "Service startup",
+        65,
+        220,
+        "service"
+      ],
+      [
+        "config",
+        "Configuration",
+        280,
+        60,
+        "data"
+      ],
+      [
+        "secrets",
+        "Secret provider",
+        280,
+        160,
+        "external"
+      ],
+      [
+        "identity",
+        "Authentication",
+        280,
+        270,
+        "external"
+      ],
+      [
+        "tenant",
+        "Tenant resolver",
+        280,
+        380,
+        "service"
+      ],
+      [
+        "cache",
+        "Distributed cache",
+        530,
+        80,
+        "data"
+      ],
+      [
+        "logging",
+        "Logs & telemetry",
+        530,
+        360,
+        "external"
+      ],
+      [
+        "app",
+        "Application service",
+        760,
+        220,
+        "service"
+      ],
+      [
+        "client",
+        "Service consumer",
+        930,
+        220,
+        "ui"
+      ]
+    ],
+    "edges": [
+      [
+        "config",
+        "host",
+        "settings"
+      ],
+      [
+        "secrets",
+        "host",
+        "credentials"
+      ],
+      [
+        "identity",
+        "host",
+        "security"
+      ],
+      [
+        "tenant",
+        "host",
+        "tenant context"
+      ],
+      [
+        "host",
+        "cache",
+        "cache wiring"
+      ],
+      [
+        "host",
+        "logging",
+        "observability"
+      ],
+      [
+        "host",
+        "app",
+        "compose runtime"
+      ],
+      [
+        "client",
+        "app",
+        "API request"
+      ]
+    ]
+  },
+  {
+    "id": "ui-system",
+    "title": "Reusable enterprise forms, grids & dialog UI system",
+    "summary": "Consuming Blazor applications compose shared form, grid, dialog, validation, and component variants over common data contracts.",
+    "accent": "#c026d3",
+    "nodes": [
+      [
+        "app",
+        "Host application",
+        70,
+        220,
+        "ui"
+      ],
+      [
+        "forms",
+        "Form components",
+        300,
+        70,
+        "ui"
+      ],
+      [
+        "grids",
+        "Grid components",
+        300,
+        190,
+        "ui"
+      ],
+      [
+        "dialogs",
+        "Dialog components",
+        300,
+        310,
+        "ui"
+      ],
+      [
+        "basic",
+        "Basic component variants",
+        300,
+        430,
+        "ui"
+      ],
+      [
+        "validation",
+        "Validation contracts",
+        570,
+        120,
+        "service"
+      ],
+      [
+        "data",
+        "Data access contracts",
+        570,
+        320,
+        "service"
+      ],
+      [
+        "render",
+        "Browser UI",
+        850,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "app",
+        "forms",
+        "compose"
+      ],
+      [
+        "app",
+        "grids",
+        "compose"
+      ],
+      [
+        "app",
+        "dialogs",
+        "compose"
+      ],
+      [
+        "app",
+        "basic",
+        "compose"
+      ],
+      [
+        "forms",
+        "validation",
+        "validate"
+      ],
+      [
+        "grids",
+        "data",
+        "query"
+      ],
+      [
+        "dialogs",
+        "data",
+        "mutate"
+      ],
+      [
+        "validation",
+        "render",
+        "render state"
+      ],
+      [
+        "data",
+        "render",
+        "render data"
+      ]
+    ]
+  },
+  {
+    "id": "web-host",
+    "title": "Shared web session, validation & hosting utilities",
+    "summary": "Lightweight web hosts reuse common session, validation, service routing, error handling, and user-context helpers.",
+    "accent": "#0f766e",
+    "nodes": [
+      [
+        "browser",
+        "Browser",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "shell",
+        "Thin web host",
+        275,
+        220,
+        "ui"
+      ],
+      [
+        "session",
+        "Session & user context",
+        500,
+        70,
+        "service"
+      ],
+      [
+        "validation",
+        "Validation & errors",
+        500,
+        220,
+        "service"
+      ],
+      [
+        "routing",
+        "Service URL routing",
+        500,
+        370,
+        "service"
+      ],
+      [
+        "apis",
+        "Application APIs",
+        760,
+        220,
+        "external"
+      ],
+      [
+        "telemetry",
+        "Client diagnostics",
+        920,
+        390,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "browser",
+        "shell",
+        "interaction"
+      ],
+      [
+        "shell",
+        "session",
+        "user state"
+      ],
+      [
+        "shell",
+        "validation",
+        "request checks"
+      ],
+      [
+        "shell",
+        "routing",
+        "resolve endpoint"
+      ],
+      [
+        "routing",
+        "apis",
+        "HTTP calls"
+      ],
+      [
+        "validation",
+        "telemetry",
+        "errors"
+      ],
+      [
+        "apis",
+        "shell",
+        "response"
+      ]
+    ]
+  },
+  {
+    "id": "messaging",
+    "title": "Message-driven workflow, compensation & monitoring service",
+    "summary": "Producers start messages or routing slips, a broker transports work, saga state coordinates steps, and failures follow compensating paths.",
+    "accent": "#e11d48",
+    "nodes": [
+      [
+        "producer",
+        "Domain producer",
+        55,
+        220,
+        "service"
+      ],
+      [
+        "route",
+        "Routing slip / saga",
+        270,
+        220,
+        "worker"
+      ],
+      [
+        "asb",
+        "Cloud message broker",
+        500,
+        90,
+        "queue"
+      ],
+      [
+        "rabbit",
+        "Portable message broker",
+        500,
+        350,
+        "queue"
+      ],
+      [
+        "consumerA",
+        "Workflow consumer A",
+        725,
+        70,
+        "worker"
+      ],
+      [
+        "consumerB",
+        "Workflow consumer B",
+        725,
+        220,
+        "worker"
+      ],
+      [
+        "compensate",
+        "Compensation handler",
+        725,
+        380,
+        "worker"
+      ],
+      [
+        "state",
+        "Saga persistence",
+        920,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "producer",
+        "route",
+        "start workflow"
+      ],
+      [
+        "route",
+        "asb",
+        "cloud route"
+      ],
+      [
+        "route",
+        "rabbit",
+        "portable route"
+      ],
+      [
+        "asb",
+        "consumerA",
+        "deliver"
+      ],
+      [
+        "asb",
+        "consumerB",
+        "deliver"
+      ],
+      [
+        "rabbit",
+        "consumerA",
+        "deliver"
+      ],
+      [
+        "rabbit",
+        "consumerB",
+        "deliver"
+      ],
+      [
+        "consumerA",
+        "state",
+        "step state"
+      ],
+      [
+        "consumerB",
+        "state",
+        "step state"
+      ],
+      [
+        "state",
+        "compensate",
+        "failed step"
+      ]
+    ]
+  },
+  {
+    "id": "search",
+    "title": "Full-text search, filtering & index management capability",
+    "summary": "One search contract supports embedded or remote use while routing queries to Elasticsearch, Lucene, or an HTTP-backed store.",
+    "accent": "#0284c7",
+    "nodes": [
+      [
+        "user",
+        "Search user",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "components",
+        "Search & facet UI",
+        260,
+        120,
+        "ui"
+      ],
+      [
+        "api",
+        "Optional search API",
+        260,
+        330,
+        "service"
+      ],
+      [
+        "core",
+        "Search abstraction",
+        500,
+        220,
+        "service"
+      ],
+      [
+        "elastic",
+        "Elasticsearch",
+        755,
+        60,
+        "data"
+      ],
+      [
+        "lucene",
+        "Lucene index",
+        755,
+        220,
+        "data"
+      ],
+      [
+        "crud",
+        "HTTP-backed search",
+        755,
+        380,
+        "data"
+      ],
+      [
+        "results",
+        "Ranked results",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "user",
+        "components",
+        "query & filters"
+      ],
+      [
+        "components",
+        "core",
+        "embedded search"
+      ],
+      [
+        "components",
+        "api",
+        "remote search"
+      ],
+      [
+        "api",
+        "core",
+        "search request"
+      ],
+      [
+        "core",
+        "elastic",
+        "provider"
+      ],
+      [
+        "core",
+        "lucene",
+        "provider"
+      ],
+      [
+        "core",
+        "crud",
+        "provider"
+      ],
+      [
+        "elastic",
+        "results",
+        "matches"
+      ],
+      [
+        "lucene",
+        "results",
+        "matches"
+      ],
+      [
+        "crud",
+        "results",
+        "matches"
+      ]
+    ]
+  },
+  {
+    "id": "communication",
+    "title": "Event-driven email & SMS communication service",
+    "summary": "Queued communication requests can merge templates, select a provider, send email or SMS, and maintain delivery and unsubscribe state.",
+    "accent": "#ea580c",
+    "nodes": [
+      [
+        "apps",
+        "Consuming applications",
+        45,
+        220,
+        "service"
+      ],
+      [
+        "bus",
+        "Inbound message queue",
+        245,
+        220,
+        "queue"
+      ],
+      [
+        "merge",
+        "Template merge",
+        455,
+        80,
+        "worker"
+      ],
+      [
+        "router",
+        "Provider router",
+        455,
+        260,
+        "service"
+      ],
+      [
+        "unsub",
+        "Unsubscribe rules",
+        455,
+        420,
+        "data"
+      ],
+      [
+        "email",
+        "Email providers",
+        700,
+        100,
+        "external"
+      ],
+      [
+        "sms",
+        "SMS providers",
+        700,
+        300,
+        "external"
+      ],
+      [
+        "status",
+        "Delivery status store",
+        920,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "apps",
+        "bus",
+        "send request"
+      ],
+      [
+        "bus",
+        "merge",
+        "dynamic content"
+      ],
+      [
+        "merge",
+        "router",
+        "rendered message"
+      ],
+      [
+        "unsub",
+        "router",
+        "delivery permission"
+      ],
+      [
+        "router",
+        "email",
+        "email route"
+      ],
+      [
+        "router",
+        "sms",
+        "SMS route"
+      ],
+      [
+        "email",
+        "status",
+        "provider result"
+      ],
+      [
+        "sms",
+        "status",
+        "provider result"
+      ]
+    ]
+  },
+  {
+    "id": "document-approval",
+    "title": "Identity-verified document review & approval workflow",
+    "summary": "A host requests approval through messaging; verification protects access before viewing, signing, storing, and eventing the result.",
+    "accent": "#7c3aed",
+    "nodes": [
+      [
+        "host",
+        "Host application",
+        45,
+        220,
+        "ui"
+      ],
+      [
+        "bus",
+        "Approval request queue",
+        245,
+        220,
+        "queue"
+      ],
+      [
+        "service",
+        "Approval service",
+        450,
+        220,
+        "service"
+      ],
+      [
+        "verify",
+        "Verification code",
+        650,
+        70,
+        "service"
+      ],
+      [
+        "viewer",
+        "Document viewer & sign",
+        650,
+        240,
+        "ui"
+      ],
+      [
+        "files",
+        "Approval file storage",
+        650,
+        410,
+        "data"
+      ],
+      [
+        "events",
+        "Approval event history",
+        880,
+        140,
+        "data"
+      ],
+      [
+        "notify",
+        "Email notification",
+        880,
+        350,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "host",
+        "bus",
+        "request approval"
+      ],
+      [
+        "bus",
+        "service",
+        "deliver request"
+      ],
+      [
+        "service",
+        "verify",
+        "issue code"
+      ],
+      [
+        "verify",
+        "viewer",
+        "grant access"
+      ],
+      [
+        "service",
+        "files",
+        "store document"
+      ],
+      [
+        "viewer",
+        "files",
+        "signed output"
+      ],
+      [
+        "service",
+        "events",
+        "record lifecycle"
+      ],
+      [
+        "events",
+        "notify",
+        "status message"
+      ]
+    ]
+  },
+  {
+    "id": "document-builder",
+    "title": "Template-driven document generation & scheduling service",
+    "summary": "Templates and data are combined through an API or scheduled worker, with storage adapters and an embedded management UI.",
+    "accent": "#be123c",
+    "nodes": [
+      [
+        "editor",
+        "Template editor",
+        55,
+        90,
+        "ui"
+      ],
+      [
+        "app",
+        "Calling application",
+        55,
+        350,
+        "service"
+      ],
+      [
+        "api",
+        "Document API",
+        285,
+        220,
+        "service"
+      ],
+      [
+        "templates",
+        "Template repository",
+        500,
+        70,
+        "data"
+      ],
+      [
+        "data",
+        "Business data source",
+        500,
+        220,
+        "data"
+      ],
+      [
+        "builder",
+        "Merge engine",
+        700,
+        220,
+        "worker"
+      ],
+      [
+        "storage",
+        "Blob / file storage",
+        900,
+        100,
+        "data"
+      ],
+      [
+        "schedule",
+        "Recurring build worker",
+        900,
+        340,
+        "worker"
+      ]
+    ],
+    "edges": [
+      [
+        "editor",
+        "templates",
+        "manage templates"
+      ],
+      [
+        "app",
+        "api",
+        "build request"
+      ],
+      [
+        "api",
+        "templates",
+        "load template"
+      ],
+      [
+        "api",
+        "data",
+        "load parameters"
+      ],
+      [
+        "api",
+        "builder",
+        "merge"
+      ],
+      [
+        "builder",
+        "storage",
+        "save output"
+      ],
+      [
+        "schedule",
+        "builder",
+        "scheduled merge"
+      ],
+      [
+        "schedule",
+        "data",
+        "scheduled data"
+      ]
+    ]
+  },
+  {
+    "id": "identity-client",
+    "title": "OIDC sign-in, token validation & access client library",
+    "summary": "Reusable client libraries coordinate browser or device sign-in, OIDC redirects, token validation, access policies, and secured API calls.",
+    "accent": "#1d4ed8",
+    "nodes": [
+      [
+        "user",
+        "User or device",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "client",
+        "Identity client",
+        270,
+        220,
+        "service"
+      ],
+      [
+        "oidc",
+        "OIDC redirect",
+        470,
+        80,
+        "service"
+      ],
+      [
+        "idp",
+        "Identity provider",
+        690,
+        80,
+        "external"
+      ],
+      [
+        "token",
+        "JWT validation",
+        470,
+        350,
+        "service"
+      ],
+      [
+        "policy",
+        "Authorization policy",
+        690,
+        350,
+        "service"
+      ],
+      [
+        "api",
+        "Protected API",
+        910,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "user",
+        "client",
+        "sign-in"
+      ],
+      [
+        "client",
+        "oidc",
+        "challenge"
+      ],
+      [
+        "oidc",
+        "idp",
+        "authenticate"
+      ],
+      [
+        "idp",
+        "token",
+        "tokens"
+      ],
+      [
+        "token",
+        "client",
+        "session"
+      ],
+      [
+        "client",
+        "policy",
+        "access check"
+      ],
+      [
+        "policy",
+        "api",
+        "authorized call"
+      ]
+    ]
+  },
+  {
+    "id": "identity-ui",
+    "title": "Identity administration & self-service component suite",
+    "summary": "Back-office administration and end-user self-service components call identity APIs for users, roles, devices, profiles, and recovery.",
+    "accent": "#9333ea",
+    "nodes": [
+      [
+        "admin",
+        "Administrator",
+        50,
+        90,
+        "ui"
+      ],
+      [
+        "enduser",
+        "End user",
+        50,
+        360,
+        "ui"
+      ],
+      [
+        "adminui",
+        "Admin components",
+        285,
+        90,
+        "ui"
+      ],
+      [
+        "selfui",
+        "Self-service components",
+        285,
+        360,
+        "ui"
+      ],
+      [
+        "identityapi",
+        "Identity administration API",
+        535,
+        220,
+        "service"
+      ],
+      [
+        "idp",
+        "Identity platform",
+        760,
+        150,
+        "external"
+      ],
+      [
+        "email",
+        "Validation & recovery email",
+        760,
+        350,
+        "external"
+      ],
+      [
+        "store",
+        "Identity data",
+        940,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "admin",
+        "adminui",
+        "manage users"
+      ],
+      [
+        "enduser",
+        "selfui",
+        "profile & recovery"
+      ],
+      [
+        "adminui",
+        "identityapi",
+        "admin REST"
+      ],
+      [
+        "selfui",
+        "identityapi",
+        "OIDC/self-service"
+      ],
+      [
+        "identityapi",
+        "idp",
+        "identity operations"
+      ],
+      [
+        "identityapi",
+        "email",
+        "verify & recover"
+      ],
+      [
+        "idp",
+        "store",
+        "identity state"
+      ]
+    ]
+  },
+  {
+    "id": "tenant-identity",
+    "title": "Multi-tenant branded identity & realm deployment",
+    "summary": "Tenant discovery selects branding and realm behavior before the identity platform authenticates and returns an application session.",
+    "accent": "#0f766e",
+    "nodes": [
+      [
+        "user",
+        "Tenant user",
+        60,
+        220,
+        "ui"
+      ],
+      [
+        "login",
+        "Branded sign-in",
+        270,
+        220,
+        "ui"
+      ],
+      [
+        "tenant",
+        "Tenant/theme resolver",
+        485,
+        100,
+        "service"
+      ],
+      [
+        "plugin",
+        "Identity extension",
+        485,
+        330,
+        "service"
+      ],
+      [
+        "keycloak",
+        "Identity server",
+        720,
+        220,
+        "external"
+      ],
+      [
+        "tokens",
+        "OIDC tokens",
+        900,
+        100,
+        "data"
+      ],
+      [
+        "apps",
+        "Tenant applications",
+        900,
+        350,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "user",
+        "login",
+        "open sign-in"
+      ],
+      [
+        "login",
+        "tenant",
+        "resolve tenant"
+      ],
+      [
+        "tenant",
+        "plugin",
+        "select theme"
+      ],
+      [
+        "plugin",
+        "keycloak",
+        "extend flow"
+      ],
+      [
+        "login",
+        "keycloak",
+        "authenticate"
+      ],
+      [
+        "keycloak",
+        "tokens",
+        "issue tokens"
+      ],
+      [
+        "tokens",
+        "apps",
+        "create session"
+      ]
+    ]
+  },
+  {
+    "id": "authentication",
+    "title": "User, device & legacy authentication gateway services",
+    "summary": "User and device authentication routes through modern identity endpoints while legacy administration remains isolated during migration.",
+    "accent": "#dc2626",
+    "nodes": [
+      [
+        "device",
+        "Registered device",
+        40,
+        90,
+        "ui"
+      ],
+      [
+        "user",
+        "User browser",
+        40,
+        360,
+        "ui"
+      ],
+      [
+        "deviceapi",
+        "Device authentication API",
+        270,
+        90,
+        "service"
+      ],
+      [
+        "webclient",
+        "Web identity client",
+        270,
+        360,
+        "service"
+      ],
+      [
+        "modern",
+        "Modern identity provider",
+        530,
+        90,
+        "external"
+      ],
+      [
+        "legacy",
+        "Legacy identity suite",
+        530,
+        360,
+        "external"
+      ],
+      [
+        "jwt",
+        "Token & policy layer",
+        760,
+        220,
+        "service"
+      ],
+      [
+        "apps",
+        "Protected applications",
+        940,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "device",
+        "deviceapi",
+        "device credentials"
+      ],
+      [
+        "user",
+        "webclient",
+        "interactive login"
+      ],
+      [
+        "deviceapi",
+        "modern",
+        "device flow"
+      ],
+      [
+        "webclient",
+        "modern",
+        "OIDC flow"
+      ],
+      [
+        "webclient",
+        "legacy",
+        "migration fallback"
+      ],
+      [
+        "modern",
+        "jwt",
+        "tokens"
+      ],
+      [
+        "legacy",
+        "jwt",
+        "legacy tokens"
+      ],
+      [
+        "jwt",
+        "apps",
+        "authorized session"
+      ]
+    ]
+  },
+  {
+    "id": "tenant-lifecycle",
+    "title": "Tenant provisioning, configuration & data-assignment service",
+    "summary": "Tenant administrators request provisioning, which coordinates configuration, store assignment, secrets, and observable lifecycle status.",
+    "accent": "#059669",
+    "nodes": [
+      [
+        "admin",
+        "Platform administrator",
+        55,
+        220,
+        "ui"
+      ],
+      [
+        "api",
+        "Tenant lifecycle API",
+        270,
+        220,
+        "service"
+      ],
+      [
+        "workflow",
+        "Provisioning workflow",
+        485,
+        220,
+        "worker"
+      ],
+      [
+        "config",
+        "Tenant configuration",
+        700,
+        60,
+        "data"
+      ],
+      [
+        "store",
+        "Data-store assignment",
+        700,
+        180,
+        "data"
+      ],
+      [
+        "secrets",
+        "Tenant secrets",
+        700,
+        300,
+        "external"
+      ],
+      [
+        "identity",
+        "Identity setup",
+        700,
+        420,
+        "external"
+      ],
+      [
+        "status",
+        "Lifecycle status",
+        920,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "admin",
+        "api",
+        "create/update tenant"
+      ],
+      [
+        "api",
+        "workflow",
+        "start lifecycle"
+      ],
+      [
+        "workflow",
+        "config",
+        "write settings"
+      ],
+      [
+        "workflow",
+        "store",
+        "assign store"
+      ],
+      [
+        "workflow",
+        "secrets",
+        "provision secrets"
+      ],
+      [
+        "workflow",
+        "identity",
+        "provision identity"
+      ],
+      [
+        "workflow",
+        "status",
+        "record progress"
+      ],
+      [
+        "status",
+        "admin",
+        "show outcome"
+      ]
+    ]
+  },
+  {
+    "id": "secrets",
+    "title": "Provider-neutral secrets & vault access abstraction",
+    "summary": "Application services request secrets through one contract while authentication and provider adapters isolate the underlying vault implementation.",
+    "accent": "#b45309",
+    "nodes": [
+      [
+        "service",
+        "Application service",
+        60,
+        220,
+        "service"
+      ],
+      [
+        "contract",
+        "Secret-store contract",
+        290,
+        220,
+        "service"
+      ],
+      [
+        "auth",
+        "Vault authentication",
+        510,
+        80,
+        "service"
+      ],
+      [
+        "adapter",
+        "Vault provider adapter",
+        510,
+        280,
+        "worker"
+      ],
+      [
+        "vault",
+        "Secure vault",
+        760,
+        220,
+        "external"
+      ],
+      [
+        "secret",
+        "Runtime secret value",
+        930,
+        220,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "service",
+        "contract",
+        "request key"
+      ],
+      [
+        "contract",
+        "auth",
+        "obtain access"
+      ],
+      [
+        "auth",
+        "adapter",
+        "authorized context"
+      ],
+      [
+        "contract",
+        "adapter",
+        "provider-neutral call"
+      ],
+      [
+        "adapter",
+        "vault",
+        "read secret"
+      ],
+      [
+        "vault",
+        "secret",
+        "return value"
+      ],
+      [
+        "secret",
+        "service",
+        "in-memory use"
+      ]
+    ]
+  },
+  {
+    "id": "shared-data",
+    "title": "Multi-provider repository & query data access layer",
+    "summary": "Domain services use repositories and a common query runner while provider packages translate operations for SQL Server, MySQL, or embedded storage.",
+    "accent": "#475569",
+    "nodes": [
+      [
+        "domain",
+        "Domain service",
+        55,
+        220,
+        "service"
+      ],
+      [
+        "repo",
+        "Repository contracts",
+        275,
+        110,
+        "service"
+      ],
+      [
+        "query",
+        "Query specification runner",
+        275,
+        330,
+        "service"
+      ],
+      [
+        "sqladapter",
+        "SQL Server provider",
+        530,
+        70,
+        "worker"
+      ],
+      [
+        "mysqladapter",
+        "MySQL provider",
+        530,
+        220,
+        "worker"
+      ],
+      [
+        "liteadapter",
+        "Embedded provider",
+        530,
+        370,
+        "worker"
+      ],
+      [
+        "sql",
+        "SQL Server",
+        800,
+        70,
+        "data"
+      ],
+      [
+        "mysql",
+        "MySQL",
+        800,
+        220,
+        "data"
+      ],
+      [
+        "lite",
+        "Embedded store",
+        800,
+        370,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "domain",
+        "repo",
+        "entity operations"
+      ],
+      [
+        "domain",
+        "query",
+        "queries"
+      ],
+      [
+        "repo",
+        "sqladapter",
+        "provider"
+      ],
+      [
+        "repo",
+        "mysqladapter",
+        "provider"
+      ],
+      [
+        "repo",
+        "liteadapter",
+        "provider"
+      ],
+      [
+        "query",
+        "sqladapter",
+        "translated query"
+      ],
+      [
+        "query",
+        "mysqladapter",
+        "translated query"
+      ],
+      [
+        "sqladapter",
+        "sql",
+        "execute"
+      ],
+      [
+        "mysqladapter",
+        "mysql",
+        "execute"
+      ],
+      [
+        "liteadapter",
+        "lite",
+        "execute"
+      ]
+    ]
+  },
+  {
+    "id": "identifier-service",
+    "title": "Tenant-scoped sequence & code generation service",
+    "summary": "Services reserve tenant-scoped sequences or generated codes through a transactional repository with interchangeable storage providers.",
+    "accent": "#4f46e5",
+    "nodes": [
+      [
+        "consumer",
+        "Consuming service",
+        60,
+        220,
+        "service"
+      ],
+      [
+        "api",
+        "Identifier API",
+        285,
+        220,
+        "service"
+      ],
+      [
+        "generator",
+        "Code generator",
+        500,
+        80,
+        "worker"
+      ],
+      [
+        "sequence",
+        "Tracked sequence coordinator",
+        500,
+        300,
+        "worker"
+      ],
+      [
+        "memory",
+        "In-memory provider",
+        735,
+        60,
+        "data"
+      ],
+      [
+        "sql",
+        "SQL provider",
+        735,
+        180,
+        "data"
+      ],
+      [
+        "mysql",
+        "MySQL provider",
+        735,
+        300,
+        "data"
+      ],
+      [
+        "lite",
+        "Embedded provider",
+        735,
+        420,
+        "data"
+      ],
+      [
+        "id",
+        "Reserved identifier",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "consumer",
+        "api",
+        "request identifier"
+      ],
+      [
+        "api",
+        "generator",
+        "random code"
+      ],
+      [
+        "api",
+        "sequence",
+        "sequential code"
+      ],
+      [
+        "sequence",
+        "memory",
+        "test provider"
+      ],
+      [
+        "sequence",
+        "sql",
+        "transaction"
+      ],
+      [
+        "sequence",
+        "mysql",
+        "transaction"
+      ],
+      [
+        "sequence",
+        "lite",
+        "transaction"
+      ],
+      [
+        "generator",
+        "id",
+        "generated value"
+      ],
+      [
+        "sequence",
+        "id",
+        "reserved value"
+      ]
+    ]
+  },
+  {
+    "id": "data-import",
+    "title": "Template-driven bulk data import & status pipeline",
+    "summary": "Uploaded files are stored, matched to a template, dispatched to domain-specific jobs, bulk-loaded, and tracked through processing events.",
+    "accent": "#0891b2",
+    "nodes": [
+      [
+        "user",
+        "Data uploader",
+        45,
+        220,
+        "ui"
+      ],
+      [
+        "upload",
+        "Upload & template UI",
+        250,
+        220,
+        "ui"
+      ],
+      [
+        "files",
+        "Shared file storage",
+        460,
+        70,
+        "data"
+      ],
+      [
+        "dispatcher",
+        "Job dispatcher",
+        460,
+        250,
+        "worker"
+      ],
+      [
+        "jobs",
+        "Domain transform jobs",
+        670,
+        100,
+        "worker"
+      ],
+      [
+        "bulk",
+        "Bulk database loader",
+        670,
+        300,
+        "worker"
+      ],
+      [
+        "db",
+        "Target database",
+        900,
+        100,
+        "data"
+      ],
+      [
+        "status",
+        "Processing status",
+        900,
+        330,
+        "data"
+      ]
+    ],
+    "edges": [
+      [
+        "user",
+        "upload",
+        "choose file/template"
+      ],
+      [
+        "upload",
+        "files",
+        "store input"
+      ],
+      [
+        "upload",
+        "dispatcher",
+        "start job"
+      ],
+      [
+        "files",
+        "jobs",
+        "read file"
+      ],
+      [
+        "dispatcher",
+        "jobs",
+        "select transform"
+      ],
+      [
+        "jobs",
+        "bulk",
+        "normalized rows"
+      ],
+      [
+        "bulk",
+        "db",
+        "bulk write"
+      ],
+      [
+        "jobs",
+        "status",
+        "stage events"
+      ],
+      [
+        "status",
+        "upload",
+        "progress"
+      ]
+    ]
+  },
+  {
+    "id": "common-kernel",
+    "title": "Shared contracts, errors, logging & helper kernel",
+    "summary": "A minimal dependency-free kernel supplies contracts, helpers, error types, and logging abstractions to services, web apps, and mobile apps.",
+    "accent": "#334155",
+    "nodes": [
+      [
+        "contracts",
+        "Shared contracts",
+        450,
+        70,
+        "service"
+      ],
+      [
+        "helpers",
+        "Core helpers",
+        250,
+        220,
+        "service"
+      ],
+      [
+        "errors",
+        "Errors & results",
+        450,
+        220,
+        "service"
+      ],
+      [
+        "logging",
+        "Logging abstractions",
+        650,
+        220,
+        "service"
+      ],
+      [
+        "api",
+        "API services",
+        180,
+        410,
+        "external"
+      ],
+      [
+        "web",
+        "Web applications",
+        390,
+        410,
+        "external"
+      ],
+      [
+        "mobile",
+        "Mobile applications",
+        600,
+        410,
+        "external"
+      ],
+      [
+        "infra",
+        "Infrastructure packages",
+        810,
+        410,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "contracts",
+        "helpers",
+        "common types"
+      ],
+      [
+        "contracts",
+        "errors",
+        "result contracts"
+      ],
+      [
+        "contracts",
+        "logging",
+        "log contracts"
+      ],
+      [
+        "helpers",
+        "api",
+        "consume"
+      ],
+      [
+        "errors",
+        "web",
+        "consume"
+      ],
+      [
+        "logging",
+        "mobile",
+        "consume"
+      ],
+      [
+        "logging",
+        "infra",
+        "consume"
+      ],
+      [
+        "errors",
+        "infra",
+        "consume"
+      ]
+    ]
+  },
+  {
+    "id": "logging-search",
+    "title": "Structured logging, indexing & diagnostic search utilities",
+    "summary": "Applications emit normalized logs through simple or structured adapters, then operators query indexed events for diagnostics.",
+    "accent": "#0e7490",
+    "nodes": [
+      [
+        "apps",
+        "Applications",
+        55,
+        220,
+        "service"
+      ],
+      [
+        "contract",
+        "Logging contract",
+        270,
+        220,
+        "service"
+      ],
+      [
+        "simple",
+        "Console/file logger",
+        500,
+        90,
+        "worker"
+      ],
+      [
+        "structured",
+        "Structured log adapter",
+        500,
+        310,
+        "worker"
+      ],
+      [
+        "files",
+        "Local logs",
+        730,
+        90,
+        "data"
+      ],
+      [
+        "index",
+        "Central log index",
+        730,
+        310,
+        "data"
+      ],
+      [
+        "search",
+        "Diagnostic search",
+        930,
+        220,
+        "ui"
+      ]
+    ],
+    "edges": [
+      [
+        "apps",
+        "contract",
+        "emit event"
+      ],
+      [
+        "contract",
+        "simple",
+        "local route"
+      ],
+      [
+        "contract",
+        "structured",
+        "structured route"
+      ],
+      [
+        "simple",
+        "files",
+        "write"
+      ],
+      [
+        "structured",
+        "index",
+        "publish"
+      ],
+      [
+        "files",
+        "search",
+        "inspect"
+      ],
+      [
+        "index",
+        "search",
+        "query"
+      ]
+    ]
+  },
+  {
+    "id": "xml-viewer",
+    "title": "Blazor XML tree & detail inspection component",
+    "summary": "A focused Blazor component accepts structured XML, parses it safely, and exposes navigable tree and detail views for review.",
+    "accent": "#7c3aed",
+    "nodes": [
+      [
+        "input",
+        "XML input",
+        70,
+        220,
+        "data"
+      ],
+      [
+        "component",
+        "Viewer component",
+        300,
+        220,
+        "ui"
+      ],
+      [
+        "parser",
+        "XML parser",
+        520,
+        100,
+        "service"
+      ],
+      [
+        "model",
+        "Structured node model",
+        520,
+        330,
+        "data"
+      ],
+      [
+        "tree",
+        "Tree navigation",
+        760,
+        100,
+        "ui"
+      ],
+      [
+        "detail",
+        "Element detail view",
+        760,
+        330,
+        "ui"
+      ],
+      [
+        "user",
+        "Reviewer",
+        930,
+        220,
+        "external"
+      ]
+    ],
+    "edges": [
+      [
+        "input",
+        "component",
+        "load content"
+      ],
+      [
+        "component",
+        "parser",
+        "parse"
+      ],
+      [
+        "parser",
+        "model",
+        "build nodes"
+      ],
+      [
+        "model",
+        "tree",
+        "hierarchy"
+      ],
+      [
+        "model",
+        "detail",
+        "selected values"
+      ],
+      [
+        "tree",
+        "user",
+        "navigate"
+      ],
+      [
+        "detail",
+        "user",
+        "inspect"
+      ]
+    ]
+  }
 ]

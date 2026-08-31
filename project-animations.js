@@ -54,17 +54,19 @@
     document.querySelector('[data-step-copy]').textContent = edge[2] ? `Connection purpose: ${edge[2]}.` : 'A project-specific system connection.';
     document.querySelector('[data-flow-step]').textContent = `Connection ${state.edge + 1} of ${project.edges.length}`;
   }
-  function choose(project) { state.selected = project; state.edge = 0; picker.value = project.id; renderDiagram(); }
+  function choose(project) { state.selected = project; state.edge = 0; picker.value = project.id; renderDiagram(); const url = new URL(location.href); url.searchParams.set('project', project.id); history.replaceState(null, '', url); }
   function applyFilter() {
     const term = search.value.trim().toLowerCase();
+    const terms = term.split(/\s+/).filter(Boolean);
     const rank = project => {
       const title = project.title.toLowerCase();
       if (!term || title.startsWith(term)) return 0;
       if (title.includes(term)) return 1;
-      if (project.nodes.some(node => node[1].toLowerCase().includes(term))) return 2;
-      return 3;
+      if (terms.every(token => title.includes(token))) return 2;
+      if (project.nodes.some(node => terms.some(token => node[1].toLowerCase().includes(token)))) return 3;
+      return 4;
     };
-    state.filtered = state.projects.filter(project => `${project.title} ${project.summary} ${project.nodes.map(n => n[1]).join(' ')}`.toLowerCase().includes(term)).sort((a, b) => rank(a) - rank(b));
+    state.filtered = state.projects.filter(project => { const haystack = `${project.title} ${project.summary} ${project.nodes.map(n => n[1]).join(' ')}`.toLowerCase(); return terms.every(token => haystack.includes(token)); }).sort((a, b) => rank(a) - rank(b));
     picker.innerHTML = state.filtered.length ? state.filtered.map(project => `<option value="${esc(project.id)}">${esc(project.title)}</option>`).join('') : '<option value="">No matching projects</option>';
     document.querySelector('[data-result-count]').textContent = `${state.filtered.length} match${state.filtered.length === 1 ? '' : 'es'}`;
     if (state.filtered.length) choose(state.filtered[0]);
@@ -78,5 +80,5 @@
     if (state.timer) { clearInterval(state.timer); state.timer = null; event.currentTarget.textContent = 'Play flow'; }
     else { state.timer = setInterval(next, 1800); event.currentTarget.textContent = 'Pause flow'; }
   });
-  fetch('architecture-data.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw new Error(`Data request failed (${response.status})`); return response.json(); }).then(projects => { state.projects = projects; state.filtered = projects; applyFilter(); }).catch(error => { document.querySelector('[data-project-title]').textContent = 'Architecture data unavailable'; document.querySelector('[data-project-summary]').textContent = error.message; });
+  fetch('architecture-data.json', { cache: 'no-store' }).then(response => { if (!response.ok) throw new Error(`Data request failed (${response.status})`); return response.json(); }).then(projects => { state.projects = projects; state.filtered = projects; const requested = new URLSearchParams(location.search).get('project'); const target = requested ? projects.find(project => project.id === requested || project.title === requested) : null; if (target) { picker.innerHTML = projects.map(project => `<option value="${esc(project.id)}">${esc(project.title)}</option>`).join(''); document.querySelector('[data-result-count]').textContent = `${projects.length} matches`; choose(target); } else applyFilter(); }).catch(error => { document.querySelector('[data-project-title]').textContent = 'Architecture data unavailable'; document.querySelector('[data-project-summary]').textContent = error.message; });
 })();
