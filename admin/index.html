@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Architecture Editor</title>
+  <style>
+    :root{--ink:#173042;--muted:#617783;--line:#d5e1e6;--paper:#fff;--bg:#f4f8f9;--accent:#147f84}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}.shell{width:min(1180px,calc(100% - 30px));margin:2rem auto}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 35px rgba(28,62,76,.08);padding:1.4rem}.brand{font-weight:900}.brand b{color:var(--accent)}h1{margin:.25rem 0;font-size:clamp(2rem,5vw,3.4rem);line-height:1}.muted,.status{color:var(--muted)}.login{max-width:620px;margin:12vh auto}.login-form{display:grid;gap:.8rem;margin-top:1.3rem}.field{display:grid;gap:.35rem}.field label{font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.field input,.field select,.field textarea{width:100%;border:1px solid #bfd0d7;border-radius:9px;background:#fff;padding:.68rem .75rem;color:var(--ink)}.field textarea{min-height:160px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.82rem;resize:vertical}.button{border:1px solid var(--accent);border-radius:9px;background:var(--accent);color:#fff;padding:.7rem 1rem;font-weight:850;cursor:pointer}.button.secondary{background:#fff;color:var(--ink);border-color:#bdcfd7}.button:disabled{opacity:.55;cursor:not-allowed}.notice{padding:.8rem 1rem;border-radius:10px;background:#e9f4f4;color:#21585c}.error{background:#fff0f0;color:#9f1d1d}.workspace{display:none}.workspace.active{display:block}.topbar{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:1rem}.session{font-size:.8rem;color:var(--muted)}.editor{display:grid;grid-template-columns:320px 1fr;gap:1rem}.project-list{display:grid;gap:.7rem;align-content:start}.form-grid{display:grid;grid-template-columns:1fr 170px;gap:.8rem}.wide{grid-column:1/-1}.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem}.preview{margin-top:1rem;padding:1rem;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,#fff,#eef6f7)}.preview h2{margin:.1rem 0}.preview-flow{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem}.chip{padding:.4rem .55rem;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:.78rem}.arrow{color:var(--accent);font-weight:900}.help{font-size:.82rem;color:var(--muted)}@media(max-width:780px){.editor{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}.topbar{display:block}.session{margin-top:.45rem}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="panel login" data-login>
+      <p class="brand">Ayaz <b>Portfolio</b></p><h1>Architecture editor</h1>
+      <p class="muted">This private-entry page is intentionally absent from public navigation. Sign in with a fine-grained GitHub token limited to the <strong>Ayazulhak/my-profile</strong> repository with <strong>Contents: Read and write</strong>.</p>
+      <form class="login-form" data-login-form>
+        <div class="field"><label for="token">Fine-grained GitHub token</label><input id="token" type="password" autocomplete="off" required placeholder="github_pat_…"></div>
+        <button class="button" type="submit">Open editor session</button>
+        <p class="help">The token stays only in this browser tab. The session expires after 30 minutes and the token is never written to the website or repository.</p>
+        <p class="notice error" data-login-error hidden></p>
+      </form>
+    </section>
+
+    <section class="workspace" data-workspace>
+      <div class="topbar"><div><p class="brand">Ayaz <b>Portfolio</b></p><h1>Architecture editor</h1></div><p class="session" data-session-status></p></div>
+      <div class="editor">
+        <aside class="panel project-list">
+          <div class="field"><label for="find-project">Find project</label><input id="find-project" type="search" placeholder="Search title or component" data-project-search></div>
+          <div class="field"><label for="project">Project</label><select id="project" size="14" data-project-select></select></div>
+          <p class="help">Edits update the public architecture data through a GitHub commit. Confidential project names should remain excluded.</p>
+        </aside>
+        <section class="panel">
+          <form data-editor-form>
+            <div class="form-grid">
+              <div class="field"><label for="title">Public project title</label><input id="title" data-title required></div>
+              <div class="field"><label for="accent">Diagram color</label><input id="accent" type="color" data-accent></div>
+              <div class="field wide"><label for="summary">Public-safe summary</label><textarea id="summary" data-summary></textarea></div>
+              <div class="field wide"><label for="nodes">Nodes JSON</label><textarea id="nodes" data-nodes spellcheck="false"></textarea><span class="help">Format: ["id", "Visible label", x, y, "ui|service|worker|queue|data|external"]</span></div>
+              <div class="field wide"><label for="edges">Connections JSON</label><textarea id="edges" data-edges spellcheck="false"></textarea><span class="help">Format: ["from-node-id", "to-node-id", "connection label"]</span></div>
+            </div>
+            <div class="preview" data-preview></div>
+            <div class="actions"><button class="button secondary" type="button" data-preview-button>Validate & preview</button><button class="button" type="submit" data-save>Save and publish diagram</button></div>
+            <p class="notice" data-editor-status hidden></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script>
+  (()=>{
+    const OWNER='Ayazulhak',REPO='my-profile',PATH='architecture-data.json',TTL=30*60*1000,KEY='ayaz-portfolio-admin';
+    const $=s=>document.querySelector(s),esc=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));let projects=[],sha='',selected=0,session=null,clock=null;
+    const utf8ToBase64=text=>btoa(String.fromCharCode(...new TextEncoder().encode(text)));
+    const base64ToUtf8=text=>new TextDecoder().decode(Uint8Array.from(atob(text.replace(/\n/g,'')),c=>c.charCodeAt(0)));
+    const api=(path,options={})=>fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`,{...options,headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',Authorization:`Bearer ${session.token}`,...options.headers}});
+    function setNotice(element,message,error=false){element.hidden=!message;element.textContent=message;element.classList.toggle('error',error)}
+    function expire(){sessionStorage.removeItem(KEY);session=null;clearInterval(clock);$('[data-workspace]').classList.remove('active');$('[data-login]').style.display='block';setNotice($('[data-login-error]'),'The editor session expired. Sign in again.',true)}
+    function updateClock(){if(!session||Date.now()>=session.expires)return expire();const mins=Math.max(1,Math.ceil((session.expires-Date.now())/60000));$('[data-session-status]').textContent=`Session expires in ${mins} minute${mins===1?'':'s'}`}
+    function startSession(value){session=value;sessionStorage.setItem(KEY,JSON.stringify(value));$('[data-login]').style.display='none';$('[data-workspace]').classList.add('active');updateClock();clock=setInterval(updateClock,15000)}
+    async function loadData(){const response=await api(`contents/${PATH}?ref=main`);if(!response.ok)throw new Error(response.status===401?'Token was rejected.':`GitHub returned ${response.status}.`);const payload=await response.json();sha=payload.sha;projects=JSON.parse(base64ToUtf8(payload.content));renderOptions();selectProject(0)}
+    function matches(project,term){return `${project.title} ${project.summary} ${project.nodes.map(n=>n[1]).join(' ')}`.toLowerCase().includes(term)}
+    function renderOptions(){const term=$('[data-project-search]').value.trim().toLowerCase();const select=$('[data-project-select]');select.innerHTML=projects.map((p,i)=>({p,i})).filter(x=>matches(x.p,term)).map(x=>`<option value="${x.i}">${String(x.i+1).padStart(2,'0')} · ${x.p.title}</option>`).join('');if(select.options.length)select.selectedIndex=0}
+    function selectProject(index){selected=Number(index);const p=projects[selected];if(!p)return;$('[data-title]').value=p.title;$('[data-summary]').value=p.summary;$('[data-accent]').value=p.accent;$('[data-nodes]').value=JSON.stringify(p.nodes,null,2);$('[data-edges]').value=JSON.stringify(p.edges,null,2);renderPreview(p)}
+    function readForm(){const nodes=JSON.parse($('[data-nodes]').value),edges=JSON.parse($('[data-edges]').value);if(!Array.isArray(nodes)||!nodes.length)throw new Error('Add at least one node.');if(!Array.isArray(edges)||!edges.length)throw new Error('Add at least one connection.');const ids=new Set(nodes.map(n=>n[0]));edges.forEach(e=>{if(!ids.has(e[0])||!ids.has(e[1]))throw new Error(`Connection ${e[0]} → ${e[1]} refers to a missing node.`)});return{...projects[selected],title:$('[data-title]').value.trim(),summary:$('[data-summary]').value.trim(),accent:$('[data-accent]').value,nodes,edges}}
+    function renderPreview(p){$('[data-preview]').innerHTML=`<h2 style="color:${esc(p.accent)}">${esc(p.title)}</h2><p>${esc(p.summary)}</p><div class="preview-flow">${p.edges.slice(0,10).map(e=>`<span class="chip">${esc(p.nodes.find(n=>n[0]===e[0])?.[1]||e[0])}</span><span class="arrow">→</span><span class="chip">${esc(p.nodes.find(n=>n[0]===e[1])?.[1]||e[1])}</span>`).join('')}</div>`}
+    $('[data-login-form]').addEventListener('submit',async event=>{event.preventDefault();setNotice($('[data-login-error]'),'');const token=$('#token').value.trim();const value={token,expires:Date.now()+TTL};startSession(value);try{await loadData();$('#token').value=''}catch(error){expire();setNotice($('[data-login-error]'),error.message,true)}});
+    $('[data-project-search]').addEventListener('input',()=>{renderOptions();const option=$('[data-project-select]').options[0];if(option)selectProject(option.value)});
+    $('[data-project-select]').addEventListener('change',event=>selectProject(event.target.value));
+    $('[data-preview-button]').addEventListener('click',()=>{try{const p=readForm();projects[selected]=p;renderPreview(p);setNotice($('[data-editor-status]'),'Diagram data is valid. Preview updated.')}catch(error){setNotice($('[data-editor-status]'),error.message,true)}});
+    $('[data-editor-form]').addEventListener('submit',async event=>{event.preventDefault();const status=$('[data-editor-status]'),button=$('[data-save]');try{projects[selected]=readForm();button.disabled=true;setNotice(status,'Saving through GitHub…');const body={message:`Update ${projects[selected].title} architecture`,content:utf8ToBase64(JSON.stringify(projects,null,2)+'\n'),sha,branch:'main'};const response=await api(`contents/${PATH}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.message||`GitHub returned ${response.status}.`)}const result=await response.json();sha=result.content.sha;setNotice(status,'Saved. GitHub Pages will publish the diagram automatically.')}catch(error){setNotice(status,error.message,true)}finally{button.disabled=false}});
+    try{const saved=JSON.parse(sessionStorage.getItem(KEY)||'null');if(saved&&saved.token&&saved.expires>Date.now()){startSession(saved);loadData().catch(expire)}}catch{sessionStorage.removeItem(KEY)}
+  })();
+  </script>
+</body>
+</html>
