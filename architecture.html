@@ -1,1 +1,38 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interactive, anonymized system-flow explanations."><title>Architecture | Ayaz Ul Haq</title><link rel="stylesheet" href="styles.css"></head><body><a class="skip" href="#main">Skip to content</a><nav class="nav"><div class="wrap nav-in"><a class="brand" href="index.html">Ayaz <b>Ul Haq</b></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a aria-current="page" href="architecture.html">Architecture</a><a href="technologies.html">Technologies</a><a href="impact.html">Impact</a><a class="cta" href="index.html#contact">Connect</a></div></div></nav><main id="main"><header class="page-hero"><div class="wrap"><p class="eyebrow">Interactive project flows</p><h1>Choose a project. Watch its public-safe system story.</h1><p>Each documented project is represented by a generic name and an animation pattern matched to its class of work. Private names, endpoints, infrastructure detail, and client data are intentionally excluded.</p></div></header><section class="section"><div class="wrap"><div class="architecture-shell"><div class="arch-controls"><label for="project-picker">Project&nbsp;<select id="project-picker" data-project-picker></select></label><button data-play>Play flow</button><button data-next>Next step</button><span class="flow-step" data-flow-step>Step 1 of 5</span></div><div class="diagram" data-diagram aria-label="Animated project architecture diagram"><svg viewBox="0 0 1000 400" aria-hidden="true"><path class="wire" d="M160 210H330M440 210L570 100M440 210L570 300M680 100L800 210M680 300L800 210"/><circle class="packet" r="7"><animateMotion dur="5s" repeatCount="indefinite" path="M160 210H330L570 100H680L800 210"/></circle></svg><div class="node n-client"><span>◉</span><b data-node-client>Client</b></div><div class="node n-api"><span>⇄</span><b data-node-api>API service</b></div><div class="node n-queue"><span>≋</span><b data-node-queue>Message queue</b></div><div class="node n-worker"><span>⚙</span><b data-node-worker>Background worker</b></div><div class="node n-data"><span>◫</span><b data-node-data>Data & status</b></div></div><div class="flow-caption"><span class="step-num" data-step-number>1</span><div><h3 data-step-title>A user starts a secure request</h3><p data-step-copy>A browser or mobile client begins a workflow through the public application surface.</p></div></div></div></div></section></main><footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Interactive anonymized architecture map</span></div></footer><script src="site.js"></script><script src="project-animations.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search and explore distinct, public-safe architecture diagrams from Ayaz Ul Haq's software portfolio.">
+  <meta name="robots" content="index,follow,max-snippet:-1">
+  <link rel="canonical" href="https://ayazulhak.github.io/my-profile/architecture.html">
+  <title>Software Architecture Portfolio | Ayaz Ul Haq</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="architecture.css">
+  <style>.diagram-edge text{display:none}</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="nav"><div class="wrap nav-in"><a class="brand" href="index.html">Ayaz <b>Ul Haq</b></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a aria-current="page" href="architecture.html">Architecture</a><a href="technologies.html">Technologies</a><a href="impact.html">Impact</a><a class="cta" href="https://www.linkedin.com/in/ayaz-ul-haq" target="_blank" rel="noopener">LinkedIn</a></div></div></nav>
+  <main id="main">
+    <header class="page-hero architecture-intro"><div class="wrap"><p class="eyebrow">Interactive architecture portfolio</p><h1>Every system has its own shape.</h1><p>Search for a project to see its public-safe components, connections, flow, and visual identity. The diagrams are reconstructed from documented project evidence and intentionally omit confidential names and endpoints.</p></div></header>
+    <section class="architecture-workspace"><div class="wrap">
+      <div class="architecture-toolbar">
+        <div class="project-search"><label for="project-search">Search projects</label><input id="project-search" type="search" placeholder="Type ERP, messaging, identity, warehouse…" autocomplete="off" data-project-search><span data-result-count aria-live="polite"></span></div>
+        <div class="project-select"><label for="project-picker">Matching project</label><select id="project-picker" data-project-picker aria-label="Choose an architecture project"></select></div>
+        <div class="flow-actions"><button class="button ghost" type="button" data-play>Play flow</button><button class="button ghost" type="button" data-next>Next connection</button></div>
+      </div>
+      <article class="architecture-shell architecture-v2">
+        <header class="diagram-header"><div><p class="kicker" data-project-number>Project architecture</p><h2 data-project-title>Loading architecture…</h2><p data-project-summary></p></div><div class="diagram-status"><span class="accent-dot" data-accent-dot></span><span data-flow-step>Connection 1</span></div></header>
+        <div class="diagram-stage" data-diagram aria-live="polite"><svg viewBox="0 0 1080 560" role="img" aria-labelledby="diagram-svg-title diagram-svg-desc" data-diagram-svg><title id="diagram-svg-title">Project architecture diagram</title><desc id="diagram-svg-desc">A visual system diagram showing project-specific components and connections.</desc></svg></div>
+        <div class="flow-caption architecture-caption"><span class="step-num" data-step-number>1</span><div><h3 data-step-title>Loading connection…</h3><p data-step-copy></p></div></div>
+        <div class="diagram-legend" aria-label="Diagram legend"><span><i class="legend-ui"></i>User interface</span><span><i class="legend-service"></i>Service</span><span><i class="legend-worker"></i>Worker/process</span><span><i class="legend-queue"></i>Messaging</span><span><i class="legend-data"></i>Data</span><span><i class="legend-external"></i>External/output</span></div>
+      </article>
+      <p class="architecture-note">These diagrams describe system structure—not sole personal ownership. Exact contribution scope can be added after project-by-project confirmation.</p>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Distinct, anonymized architecture maps</span></div></footer>
+  <script src="site.js"></script>
+  <script src="project-animations.js"></script>
+</body>
+</html>
