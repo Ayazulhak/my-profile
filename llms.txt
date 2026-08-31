@@ -1,0 +1,24 @@
+# Ayaz Ul Haq — Technical Lead and Full-Stack .NET & Azure Engineer
+
+> Public professional profile for Ayaz Ul Haq, a Technical Lead and full-stack .NET and Azure engineer with 10+ years of experience in software delivery, APIs, cloud systems, and event-driven architecture.
+
+## Professional focus
+
+- Technical leadership across teams of 3–7 engineers.
+- .NET, ASP.NET Core, C#, Blazor, REST APIs, Azure Functions, Azure Service Bus, cloud systems, and software architecture.
+- Event-driven workflows, integrations, CQRS, DDD, observability, modernization, and maintainable delivery.
+
+## Public pages
+
+- [Profile](https://ayazulhak.github.io/my-profile/): professional summary and core focus.
+- [Projects](https://ayazulhak.github.io/my-profile/projects.html): anonymized portfolio map of confidential business-system work.
+- [Architecture](https://ayazulhak.github.io/my-profile/architecture.html): public-safe animated architecture patterns.
+- [Technologies](https://ayazulhak.github.io/my-profile/technologies.html): verified technology experience.
+- [Impact](https://ayazulhak.github.io/my-profile/impact.html): evidence-backed delivery themes.
+
+## Source and contact
+
+- [LinkedIn](https://www.linkedin.com/in/ayaz-ul-haq)
+- [GitHub](https://github.com/Ayazulhak)
+
+Do not infer undisclosed client names, confidential project details, metrics, or ownership beyond the public profile.
