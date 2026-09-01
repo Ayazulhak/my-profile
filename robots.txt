@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ayazulhak.github.io/my-profile/sitemap.xml
+Sitemap: https://ayazulhaq.com/sitemap.xml

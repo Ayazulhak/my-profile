@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Search and explore distinct, public-safe architecture diagrams from Ayaz Ul Haq's software portfolio.">
   <meta name="robots" content="index,follow,max-snippet:-1">
-  <link rel="canonical" href="https://ayazulhak.github.io/my-profile/architecture.html">
+  <link rel="canonical" href="https://ayazulhaq.com/architecture.html">
+  <meta property="og:type" content="website"><meta property="og:title" content="Interactive Software Architecture | Ayaz Ul Haq"><meta property="og:description" content="Search 42 distinct, anonymized system maps and follow each connection step by step."><meta property="og:url" content="https://ayazulhaq.com/architecture.html">
   <title>Software Architecture Portfolio | Ayaz Ul Haq</title>
-  <link rel="stylesheet" href="styles.css?v=20260831-blue7">
-  <link rel="stylesheet" href="architecture.css?v=20260831-blue7">
+  <link rel="stylesheet" href="styles.css?v=20260901-portfolio1">
+  <link rel="stylesheet" href="architecture.css?v=20260901-portfolio1">
   <style>.diagram-edge text{display:none}</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <nav class="nav"><div class="wrap nav-in"><a class="brand" href="index.html">Ayaz <b>Ul Haq</b></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a aria-current="page" href="architecture.html">Architecture</a><a href="technologies.html">Technologies</a><a href="impact.html">Impact</a><a class="cta" href="https://www.linkedin.com/in/ayaz-ul-haq" target="_blank" rel="noopener">LinkedIn</a></div></div></nav>
+  <nav class="nav" aria-label="Primary navigation"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="brand-mark">AH</span><span>Ayaz <b>Ul Haq</b></span></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="case-studies.html">Case studies</a><a aria-current="page" href="architecture.html">Architecture</a><a href="technologies.html">Technologies</a><a href="impact.html">Evidence</a><a href="notes.html">Notes</a><a class="cta" href="index.html#contact">Contact</a></div></div></nav>
   <main id="main">
-    <header class="page-hero architecture-intro"><div class="wrap"><p class="eyebrow">How the systems fit together</p><h1>Follow a request from the screen to the services behind it.</h1><p>Choose any project to inspect its components and step through the connections. The diagrams use functional names drawn from the documented work while keeping client, repository, and internal product names private.</p></div></header>
+    <header class="page-hero compact-hero architecture-intro"><div class="wrap"><p class="eyebrow">How the systems fit together</p><h1>Follow a request from the screen to the services behind it.</h1><p>Choose any project to inspect its components and step through the connections. The diagrams use functional names drawn from the documented work while keeping client, repository, and internal product names private.</p></div></header>
     <section class="architecture-workspace"><div class="wrap">
       <div class="architecture-toolbar">
         <div class="project-search"><label for="project-search">Find a system</label><input id="project-search" type="search" placeholder="Try inventory, ticketing, identity, documents…" autocomplete="off" data-project-search><span data-result-count aria-live="polite"></span></div>
         <div class="project-select"><label for="project-picker">Choose a matching system</label><select id="project-picker" data-project-picker aria-label="Choose an architecture project"></select></div>
-        <div class="flow-actions"><button class="button ghost" type="button" data-play>Play flow</button><button class="button ghost" type="button" data-next>Next connection</button></div>
+        <div class="flow-actions"><button class="button ghost" type="button" data-play>Play flow</button><button class="button ghost" type="button" data-next>Next connection</button><button class="button ghost" type="button" data-reset>Restart</button><button class="button ghost" type="button" data-fit aria-pressed="false">Fit diagram</button></div>
       </div>
       <article class="architecture-shell architecture-v2">
         <header class="diagram-header"><div><p class="kicker" data-project-number>Project architecture</p><h2 data-project-title>Loading architecture…</h2><p data-project-summary></p></div><div class="diagram-status"><span class="accent-dot" data-accent-dot></span><span data-flow-step>Connection 1</span></div></header>
@@ -28,11 +29,11 @@
         <div class="flow-caption architecture-caption"><span class="step-num" data-step-number>1</span><div><h3 data-step-title>Loading connection…</h3><p data-step-copy></p></div></div>
         <div class="diagram-legend" aria-label="Diagram legend"><span><i class="legend-ui"></i>User interface</span><span><i class="legend-service"></i>Service</span><span><i class="legend-worker"></i>Worker/process</span><span><i class="legend-queue"></i>Messaging</span><span><i class="legend-data"></i>Data</span><span><i class="legend-external"></i>External/output</span></div>
       </article>
-      <p class="architecture-note">These diagrams describe system structure—not sole personal ownership. Exact contribution scope can be added after project-by-project confirmation.</p>
+      <div class="architecture-note print-note"><strong>Scope boundary:</strong> these diagrams describe system structure—not sole personal ownership. <strong>Pending:</strong> exact contribution, decision rationale, constraints, and outcome for each system.</div>
     </div></section>
   </main>
   <footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Distinct, anonymized architecture maps</span></div></footer>
-  <script src="site.js?v=20260831-blue7"></script>
-  <script src="project-animations.js?v=20260831-editor1"></script>
+  <script src="site.js?v=20260901-portfolio1"></script>
+  <script src="project-animations.js?v=20260901-portfolio1"></script>
 </body>
 </html>

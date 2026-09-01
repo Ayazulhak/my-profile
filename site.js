@@ -46,8 +46,30 @@ const projects=[
 const year=document.querySelector('[data-year]');
 if(year)year.textContent=new Date().getFullYear();
 
+function initNavigation(){
+  const nav=document.querySelector('.nav-in');
+  const links=nav?.querySelector('.links');
+  if(!nav||!links)return;
+  links.id=links.id||'site-nav';
+  if(!nav.querySelector('.menu-toggle')){
+    const button=document.createElement('button');
+    button.className='menu-toggle';button.type='button';button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',links.id);button.setAttribute('aria-label','Open navigation');
+    button.innerHTML='<span></span><span></span><span></span>';
+    nav.insertBefore(button,links);
+    const close=()=>{links.classList.remove('is-open');button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open navigation')};
+    button.addEventListener('click',()=>{const open=links.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
+    links.addEventListener('click',event=>{if(event.target.closest('a'))close()});
+    addEventListener('keydown',event=>{if(event.key==='Escape')close()});
+    addEventListener('resize',()=>{if(innerWidth>860)close()},{passive:true});
+  }
+}
+initNavigation();
+
+const projectCard=(project,index,featured=false)=>`<a class="card project${featured?' featured-project':''}" data-project="${project[2]}" href="architecture.html?project=${encodeURIComponent(project[0])}" aria-label="Open architecture for ${project[0]}"><p class="kicker">System ${String(index+1).padStart(2,'0')} · ${project[2]}</p><h3>${project[0]}</h3><p>${project[1]}</p><div class="project-meta"><span>Contribution scope</span><strong>Pending confirmation</strong></div><div class="tags"><span class="tag">Anonymized</span><span class="tag">View architecture →</span></div></a>`;
 const grid=document.querySelector('[data-project-grid]');
-if(grid){grid.innerHTML=projects.map((project,index)=>`<a class="card project" data-project="${project[2]}" href="architecture.html?project=${encodeURIComponent(project[0])}" aria-label="Open architecture for ${project[0]}"><p class="kicker">System ${String(index+1).padStart(2,'0')} · ${project[2]}</p><h3>${project[0]}</h3><p>${project[1]}</p><div class="tags"><span class="tag">Public-safe name</span><span class="tag">View architecture →</span></div></a>`).join('')}
+if(grid)grid.innerHTML=projects.map((project,index)=>projectCard(project,index)).join('');
+const featuredGrid=document.querySelector('[data-featured-project-grid]');
+if(featuredGrid){const featured=[0,6,15,16,25,28];featuredGrid.innerHTML=featured.map(index=>projectCard(projects[index],index,true)).join('')}
 
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(item=>item.classList.remove('active'));button.classList.add('active');const type=button.dataset.filter;document.querySelectorAll('[data-project]').forEach(card=>card.hidden=type!=='all'&&card.dataset.project!==type)}));
 

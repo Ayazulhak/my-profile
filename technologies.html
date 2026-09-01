@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="The verified .NET, Azure, data, messaging, testing, and delivery technologies used by Ayaz Ul Haq.">
-  <title>Technologies | Ayaz Ul Haq</title><link rel="stylesheet" href="styles.css?v=20260831-tech1">
+  <meta name="robots" content="index,follow,max-snippet:-1"><link rel="canonical" href="https://ayazulhaq.com/technologies.html"><meta property="og:type" content="website"><meta property="og:title" content="Technology Experience | Ayaz Ul Haq"><meta property="og:description" content="Verified .NET, Azure, data, messaging, testing, and delivery technologies."><meta property="og:url" content="https://ayazulhaq.com/technologies.html">
+  <title>Technology Experience | Ayaz Ul Haq</title><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="styles.css?v=20260901-portfolio1">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <nav class="nav"><div class="wrap nav-in"><a class="brand" href="index.html">Ayaz <b>Ul Haq</b></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="architecture.html">Architecture</a><a aria-current="page" href="technologies.html">Technologies</a><a href="impact.html">Impact</a><a class="cta" href="index.html#contact">Connect</a></div></div></nav>
+  <nav class="nav" aria-label="Primary navigation"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="brand-mark">AH</span><span>Ayaz <b>Ul Haq</b></span></a><div class="links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="case-studies.html">Case studies</a><a href="architecture.html">Architecture</a><a aria-current="page" href="technologies.html">Technologies</a><a href="impact.html">Evidence</a><a href="notes.html">Notes</a><a class="cta" href="index.html#contact">Contact</a></div></div></nav>
   <main id="main">
-    <header class="page-hero tech-hero"><div class="wrap"><p class="eyebrow">Technology, in context</p><h1>The stack behind the systems.</h1><p>Technologies I have worked with across production applications, modernization, integrations, testing, and cloud delivery. Azure is my primary cloud; AWS is deliberately shown as limited production exposure.</p></div></header>
+    <header class="page-hero compact-hero tech-hero"><div class="wrap"><p class="eyebrow">Technology, in context</p><h1>The stack behind the systems.</h1><p>Technologies I have worked with across production applications, modernization, integrations, testing, and cloud delivery. Azure is my primary cloud; AWS is deliberately shown as limited production exposure.</p></div></header>
     <section class="section tech-catalog"><div class="wrap">
       <div class="tech-toolbar" role="search" aria-label="Filter technologies">
         <div class="field-like"><label for="tech-search">Find a technology</label><input id="tech-search" type="search" placeholder="Try C#, Azure SQL, React, testing…" data-tech-search></div>
@@ -23,7 +24,7 @@
     <section class="section alt"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Architecture & engineering practices</p><h2>The decisions around the tools matter just as much.</h2></div><p>These are applied approaches, separated from product logos because they are engineering practices rather than vendors.</p></div><div class="practice-grid"><span>CQRS</span><span>Domain-driven design</span><span>Microservices</span><span>Event-driven systems</span><span>Asynchronous workflows</span><span>Event scheduling</span><span>Observability</span><span>Unit testing</span><span>Integration testing</span><span>CI/CD</span><span>PR reviews</span><span>Refactoring</span><span>Performance analysis</span><span>Sprint planning</span><span>Technical mentoring</span><span>Stakeholder communication</span></div></div></section>
   </main>
   <footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Verified technology experience</span></div></footer>
-  <script src="site.js?v=20260831-tech1"></script>
+  <script src="site.js?v=20260901-portfolio1"></script>
   <script>
   (()=>{
     const cdn='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/';
@@ -68,7 +69,7 @@
     ];
     const esc=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
     const grid=document.querySelector('[data-tech-grid]');
-    grid.innerHTML=items.map(([name,area,copy,tags,src,alt,mark])=>`<article class="technology-card ${tags.includes('limited')?'limited-card':''}" data-tech="${esc(name+' '+area+' '+tags)}"><div class="technology-icon ${src?'':'text-mark '+mark}">${src?`<img src="${src}" alt="${esc(alt)}" loading="lazy">`:esc(alt)}</div><div><p class="technology-area">${esc(area)}</p><h2>${esc(name)}</h2><p>${esc(copy)}</p></div></article>`).join('');
+    grid.innerHTML=items.map(([name,area,copy,tags,src,alt,mark])=>`<article class="technology-card ${tags.includes('limited')?'limited-card':''}" data-tech="${esc(name+' '+area+' '+tags)}"><div class="technology-icon ${src?'':'text-mark '+mark}">${src?`<img src="${src}" alt="${esc(alt)}" width="48" height="48" loading="lazy" decoding="async">`:esc(alt)}</div><div><p class="technology-area">${esc(area)}</p><h2>${esc(name)}</h2><p>${esc(copy)}</p></div></article>`).join('');
     const search=document.querySelector('[data-tech-search]'),cards=[...grid.children],result=document.querySelector('[data-tech-result]'),buttons=[...document.querySelectorAll('[data-tech-filter]')];let category='all';
     const apply=()=>{const words=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let visible=0;cards.forEach(card=>{const haystack=card.dataset.tech.toLowerCase(),tokens=haystack.split(/[^a-z0-9#+.]+/).filter(Boolean);const show=(category==='all'||tokens.includes(category))&&words.every(word=>tokens.some(token=>token.startsWith(word)));card.hidden=!show;if(show)visible++});result.textContent=`${visible} technolog${visible===1?'y':'ies'} shown`};
     search.addEventListener('input',apply);buttons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.techFilter;buttons.forEach(item=>item.classList.toggle('active',item===button));apply()}));apply();

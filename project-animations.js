@@ -76,6 +76,8 @@
   search.addEventListener('keydown', event => { if (event.key === 'ArrowDown') { event.preventDefault(); picker.focus(); } if (event.key === 'Enter' && state.filtered[0]) { event.preventDefault(); choose(state.filtered[0]); } });
   picker.addEventListener('change', () => { const project = state.projects.find(item => item.id === picker.value); if (project) choose(project); });
   document.querySelector('[data-next]').addEventListener('click', next);
+  document.querySelector('[data-reset]')?.addEventListener('click',()=>{state.edge=0;renderConnection();});
+  document.querySelector('[data-fit]')?.addEventListener('click',event=>{const fitted=document.querySelector('[data-diagram]').classList.toggle('is-fitted');event.currentTarget.setAttribute('aria-pressed',String(fitted));event.currentTarget.textContent=fitted?'Pan diagram':'Fit diagram';});
   document.querySelector('[data-play]').addEventListener('click', event => {
     if (state.timer) { clearInterval(state.timer); state.timer = null; event.currentTarget.textContent = 'Play flow'; }
     else { state.timer = setInterval(next, 1800); event.currentTarget.textContent = 'Pause flow'; }

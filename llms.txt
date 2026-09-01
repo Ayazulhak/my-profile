@@ -10,11 +10,14 @@
 
 ## Public pages
 
-- [Profile](https://ayazulhak.github.io/my-profile/): professional summary, verified career signals, selected engineering work, leadership approach, availability, and contact.
-- [Projects](https://ayazulhak.github.io/my-profile/projects.html): 42 anonymized systems named by their business and engineering functions.
-- [Architecture](https://ayazulhak.github.io/my-profile/architecture.html): 42 searchable, public-safe architecture diagrams with project-specific components and connection flows.
-- [Technologies](https://ayazulhak.github.io/my-profile/technologies.html): verified technology experience.
-- [Impact](https://ayazulhak.github.io/my-profile/impact.html): evidence-backed delivery themes.
+- [Profile](https://ayazulhaq.com/): professional summary, verified career signals, selected engineering work, leadership approach, availability, and contact.
+- [Projects](https://ayazulhaq.com/projects.html): featured work plus 42 anonymized systems named by their business and engineering functions.
+- [Case studies](https://ayazulhaq.com/case-studies.html): confirmed problem, contribution, architecture, result, and explicit pending evidence.
+- [Architecture](https://ayazulhaq.com/architecture.html): 42 searchable, public-safe architecture diagrams with project-specific components and connection flows.
+- [Technologies](https://ayazulhaq.com/technologies.html): verified technology experience with official or recognizable product artwork where available.
+- [Evidence](https://ayazulhaq.com/impact.html): a public claim-status ledger separating confirmed, bounded, and pending evidence.
+- [Engineering notes](https://ayazulhaq.com/notes.html): practical technical lessons and clearly marked draft topics.
+- [Portfolio design study](https://ayazulhaq.com/site-study.html): the information architecture, confidentiality, accessibility, and evidence design behind this portfolio.
 
 ## Source and contact
 
