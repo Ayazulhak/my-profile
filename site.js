@@ -65,22 +65,11 @@ function initNavigation(){
 }
 initNavigation();
 
-const projectCard=(project,index,featured=false)=>`<a class="card project${featured?' featured-project':''}" data-project="${project[2]}" href="architecture.html?project=${encodeURIComponent(project[0])}" aria-label="Open architecture for ${project[0]}"><p class="kicker">System ${String(index+1).padStart(2,'0')} · ${project[2]}</p><h3>${project[0]}</h3><p>${project[1]}</p><div class="project-meta"><span>Contribution scope</span><strong>Pending confirmation</strong></div><div class="tags"><span class="tag">Anonymized</span><span class="tag">View architecture →</span></div></a>`;
+const projectRow=(project,index)=>`<a class="project-row" data-project="${project[2]}" href="architecture.html?project=${encodeURIComponent(project[0])}" aria-label="Open architecture for ${project[0]}"><span class="project-id">${String(index+1).padStart(2,'0')}</span><span><strong class="project-title">${project[0]}</strong><span class="project-description">${project[1]}</span></span><span class="project-kind">${project[2]}</span><span class="project-arrow" aria-hidden="true">↗</span></a>`;
+const featuredProject=(project,index)=>`<a class="featured-project" href="architecture.html?project=${encodeURIComponent(project[0])}" aria-label="Open architecture for ${project[0]}"><p class="kicker">System ${String(index+1).padStart(2,'0')} · ${project[2]}</p><h3>${project[0]}</h3><p>${project[1]}</p><span class="project-open">Explore the system ↗</span></a>`;
 const grid=document.querySelector('[data-project-grid]');
-if(grid)grid.innerHTML=projects.map((project,index)=>projectCard(project,index)).join('');
+if(grid)grid.innerHTML=projects.map((project,index)=>projectRow(project,index)).join('');
 const featuredGrid=document.querySelector('[data-featured-project-grid]');
-if(featuredGrid){const featured=[0,6,15,16,25,28];featuredGrid.innerHTML=featured.map(index=>projectCard(projects[index],index,true)).join('')}
+if(featuredGrid){const featured=[0,6,15];featuredGrid.innerHTML=featured.map(index=>featuredProject(projects[index],index)).join('')}
 
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(item=>item.classList.remove('active'));button.classList.add('active');const type=button.dataset.filter;document.querySelectorAll('[data-project]').forEach(card=>card.hidden=type!=='all'&&card.dataset.project!==type)}));
-
-function initCursorField(){
-  if(document.querySelector('.cursor-field'))return;
-  const canvas=document.createElement('canvas');canvas.className='cursor-field';canvas.setAttribute('aria-hidden','true');document.body.prepend(canvas);
-  const context=canvas.getContext('2d'),pointer={x:-1000,y:-1000},points=[];let width=0,height=0,ratio=1,frame=0;
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function resize(){width=innerWidth;height=innerHeight;ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);canvas.style.width=`${width}px`;canvas.style.height=`${height}px`;context.setTransform(ratio,0,0,ratio,0,0);points.length=0;const gap=52;for(let y=26;y<height;y+=gap)for(let x=26;x<width;x+=gap)points.push({x,y,dx:0,dy:0});draw()}
-  function draw(){context.clearRect(0,0,width,height);for(const point of points){const x=point.x+point.dx,y=point.y+point.dy,distance=Math.hypot(pointer.x-x,pointer.y-y);if(!reduced&&distance<145){const force=(145-distance)/145,angle=Math.atan2(y-pointer.y,x-pointer.x);point.dx+=(Math.cos(angle)*18*force-point.dx)*.12;point.dy+=(Math.sin(angle)*18*force-point.dy)*.12}else{point.dx*=.9;point.dy*=.9}context.beginPath();context.arc(x,y,distance<145?2.35:1.55,0,Math.PI*2);context.fillStyle=distance<145?'rgba(23,105,224,.72)':'rgba(49,111,184,.34)';context.fill();if(distance<115){context.beginPath();context.moveTo(x,y);context.lineTo(pointer.x,pointer.y);context.strokeStyle=`rgba(23,105,224,${.12*(1-distance/115)})`;context.stroke()}}if(!reduced)frame=requestAnimationFrame(draw)}
-  addEventListener('resize',resize,{passive:true});if(!reduced){addEventListener('pointermove',event=>{pointer.x=event.clientX;pointer.y=event.clientY},{passive:true});addEventListener('pointerleave',()=>{pointer.x=-1000;pointer.y=-1000},{passive:true})}resize();
-  addEventListener('pagehide',()=>cancelAnimationFrame(frame),{once:true});
-}
-initCursorField();
+document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(item=>item.classList.remove('active'));button.classList.add('active');const type=button.dataset.filter;document.querySelectorAll('[data-project]').forEach(item=>item.hidden=type!=='all'&&item.dataset.project!==type)}));
