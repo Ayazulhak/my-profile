@@ -1,9 +1,97 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Technical field notes by Ayaz Ul Haq on .NET modernization, Azure observability, performance investigation, and production debugging."><meta name="robots" content="index,follow,max-snippet:-1"><link rel="canonical" href="https://ayazulhaq.com/notes.html"><meta property="og:type" content="website"><meta property="og:title" content="Engineering Field Notes | Ayaz Ul Haq"><meta property="og:description" content="A public-safe pipeline of practical engineering lessons and production problem-solving notes."><meta property="og:url" content="https://ayazulhaq.com/notes.html"><title>Engineering Field Notes | Ayaz Ul Haq</title><link rel="stylesheet" href="styles.css?v=20260905-editorial1"></head><body><a class="skip" href="#main">Skip to content</a><nav class="nav" aria-label="Primary navigation"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>Ayaz <b>Ul Haq</b></span></a><div class="links"><a href="projects.html">Work</a><a href="index.html#approach">Approach</a><a href="architecture.html">Architecture</a><a href="index.html#contact">Contact</a><a class="cta" href="Ayaz_Ul_Haq_CV.pdf" target="_blank" rel="noopener">View CV</a></div></div></nav>
-<main id="main"><header class="page-hero compact-hero"><div class="wrap"><p class="eyebrow">Engineering field notes</p><h1>The bugs, trade-offs, and production lessons behind the diagrams.</h1><p>This page is the publishing pipeline for practical technical writing. Draft topics are visible, but unconfirmed fixes and outcomes are not presented as completed case studies.</p></div></header><section class="section"><div class="wrap"><div class="note-grid">
-<article class="note-card"><span class="status-pill pending">Draft details pending</span><p class="kicker">.NET deployment</p><h2>Static-file behavior after a .NET 9 to .NET 10 deployment</h2><p>A recent deployment exposed a non-obvious static-files issue whose resolution required finding the relevant framework discussion.</p><p><strong>Pending:</strong> reproducible symptoms, root cause, exact fix, version context, and sanitized code.</p></article>
-<article class="note-card"><span class="status-pill">Verified technical lesson</span><p class="kicker">Performance</p><h2>Why XML work inside inner loops becomes expensive</h2><p>A third-party integration repeatedly processed XML nodes and fetched broad datasets. The safe lesson: move invariant parsing out of hot paths and narrow retrieval to the data the operation needs.</p><p><strong>Pending:</strong> benchmark method and approved before/after numbers.</p></article>
-<article class="note-card"><span class="status-pill">Verified technology</span><p class="kicker">Observability</p><h2>Centralizing service signals with Azure Monitor and Log Analytics</h2><p>The implementation used Azure Monitor and Azure Log Analytics across services.</p><p><strong>Pending:</strong> an anonymized signal flow, dashboard examples, alerting strategy, and an incident story.</p></article>
-<article class="note-card"><span class="status-pill pending">Outline pending</span><p class="kicker">Modernization</p><h2>Lessons from moving systems through .NET 7, 9, and 10</h2><p>Confirmed experience exists; the useful story still needs project-specific compatibility issues, rollout choices, and outcomes.</p></article>
-<article class="note-card"><span class="status-pill pending">Story pending</span><p class="kicker">Architecture decisions</p><h2>Ready-made capability or custom build?</h2><p>The decision depends on requirements, delivery speed, debt, data needs, and operational complexity.</p><p><strong>Pending:</strong> one sanitized example with options, decision, trade-off, and result.</p></article>
-<article class="note-card"><span class="status-pill pending">Future notes</span><p class="kicker">Repository-derived backlog</p><h2>Production bugs worth teaching from</h2><p>Generic, confidentiality-safe bug summaries will be added after Ayaz compiles them from project histories.</p></article>
-</div></div></section></main><footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Public-safe engineering notes</span></div></footer><script src="site.js?v=20260905-editorial1"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Engineering notes | Ayaz Ul Haq</title>
+  <meta name="description" content="Short, practical engineering notes from Ayaz Ul Haq: performance, observability, .NET modernization. Each marked verified or draft.">
+  <link rel="canonical" href="https://ayazulhaq.com/notes.html">
+  <meta property="og:title" content="Engineering notes | Ayaz Ul Haq">
+  <meta property="og:description" content="Short, practical engineering notes from Ayaz Ul Haq: performance, observability, .NET modernization. Each marked verified or draft.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="main.css?v=3">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span>Ayaz Ul Haq</a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="site-nav">
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="technologies.html">Technologies</a></li>
+        <li><a href="impact.html">Evidence</a></li>
+        <li><a href="notes.html" aria-current="page">Notes</a></li>
+        <li><a class="btn small" href="Ayaz_Ul_Haq_CV.pdf"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h8"/></svg>Download CV</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-head">
+  <div class="wrap grid12">
+    <div class="span8"><span class="lbl">Engineering notes</span><h1 style="margin:.4rem 0 .6rem;font-size:clamp(1.9rem,3vw,2.6rem)">The bugs, trade-offs and production lessons behind the diagrams.</h1><p class="lede">Short, practical, and marked as verified or draft. Drafts are listed so you can see what is coming, not to pad the page.</p></div>
+    <div class="span4" style="display:flex;gap:.5rem;justify-content:flex-end"><span class="status ok">2 verified</span><span class="status pending">2 drafts</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap grid12">
+    <article class="card note span7" id="xml-hot-paths" style="padding:2rem">
+      <div class="card-head"><div style="display:flex;align-items:center;gap:.7rem"><span class="tile worker"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="lbl">Performance</span></div><span class="status ok">Verified</span></div>
+      <h2>Why XML parsing inside inner loops gets expensive, and what to move out</h2>
+      <p style="color:var(--ink-2)">A third-party integration re-parsed the same XML document and fetched broad datasets on every iteration. The fix was not a faster parser. It was moving invariant parsing out of the hot path and narrowing each retrieval to the data the operation needed.</p>
+<pre class="code"><span class="c">// before: parsed on every item</span>
+<span class="k">foreach</span> (var item <span class="k">in</span> items)
+{
+    var doc = XDocument.Parse(config);     <span class="c">// invariant</span>
+    var all = repo.GetAll();               <span class="c">// broad fetch</span>
+    Apply(item, doc, all);
+}
+
+<span class="c">// after: parse once, fetch by key</span>
+var doc = XDocument.Parse(config);
+<span class="k">foreach</span> (var item <span class="k">in</span> items)
+    Apply(item, doc, repo.GetByKey(item.Key));</pre>
+      <p class="small muted">Pending: benchmark method and approved before/after numbers. Listed on the <a href="impact.html">Evidence</a> page as such.</p>
+    </article>
+
+    <div class="span5" style="display:flex;flex-direction:column;gap:1rem">
+      <article class="card note" id="azure-monitor">
+        <div class="card-head"><div style="display:flex;align-items:center;gap:.7rem"><span class="tile service"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></span><span class="lbl">Observability</span></div><span class="status ok">Verified technology</span></div>
+        <h2>Centralizing service signals with Azure Monitor and Log Analytics</h2>
+        <p style="color:var(--ink-2)">How the telemetry platform's Functions, API and SQL were wired into one workspace, into one place to look when something goes wrong.</p>
+        <p class="small muted">Pending: anonymized signal flow, dashboard examples, alerting strategy.</p>
+      </article>
+      <article class="card note" id="dotnet-upgrades">
+        <div class="card-head"><div style="display:flex;align-items:center;gap:.7rem"><span class="tile"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg></span><span class="lbl">Modernization</span></div><span class="status pending">Draft</span></div>
+        <h2>Lessons from moving systems through .NET 7, 9 and 10</h2>
+        <p style="color:var(--ink-2)">What broke, what quietly changed behaviour, and the order of operations that kept production running during each step.</p>
+      </article>
+      <article class="card note" id="static-files">
+        <div class="card-head"><div style="display:flex;align-items:center;gap:.7rem"><span class="tile data"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg></span><span class="lbl">.NET deployment</span></div><span class="status pending">Draft</span></div>
+        <h2>Static-file behaviour after a .NET 9 to .NET 10 deployment</h2>
+        <p style="color:var(--ink-2)">A non-obvious static-files change that needed the framework discussion thread to resolve. Reproduction and fix to follow.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span>&copy; <span data-year>2026</span> Ayaz Ul Haq</span>
+    <span><a href="mailto:ayyazulhak@gmail.com">ayyazulhak@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/ayaz-ul-haq">LinkedIn</a> &middot; <a href="https://github.com/Ayazulhak">GitHub</a> &middot; <a href="Ayaz_Ul_Haq_CV.pdf">CV (PDF)</a></span>
+  </div>
+</footer>
+<script src="main.js?v=3" defer></script>
+</body>
+</html>

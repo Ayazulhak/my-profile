@@ -1,32 +1,78 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="The verified .NET, Azure, data, messaging, testing, and delivery technologies used by Ayaz Ul Haq.">
-  <meta name="robots" content="index,follow,max-snippet:-1"><link rel="canonical" href="https://ayazulhaq.com/technologies.html"><meta property="og:type" content="website"><meta property="og:title" content="Technology Experience | Ayaz Ul Haq"><meta property="og:description" content="Verified .NET, Azure, data, messaging, testing, and delivery technologies."><meta property="og:url" content="https://ayazulhaq.com/technologies.html">
-  <title>Technology Experience | Ayaz Ul Haq</title><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="styles.css?v=20260905-editorial1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Technologies | Ayaz Ul Haq</title>
+  <meta name="description" content="37 technologies Ayaz Ul Haq has used in production, grouped by purpose: .NET, ASP.NET Core, Blazor, Azure Functions, Service Bus, SQL Server and more.">
+  <link rel="canonical" href="https://ayazulhaq.com/technologies.html">
+  <meta property="og:title" content="Technologies | Ayaz Ul Haq">
+  <meta property="og:description" content="37 technologies, grouped by purpose.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="main.css?v=3">
+  <script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <nav class="nav" aria-label="Primary navigation"><div class="wrap nav-in"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>Ayaz <b>Ul Haq</b></span></a><div class="links"><a href="projects.html">Work</a><a href="index.html#approach">Approach</a><a href="architecture.html">Architecture</a><a aria-current="page" href="technologies.html">Capabilities</a><a class="cta" href="Ayaz_Ul_Haq_CV.pdf" target="_blank" rel="noopener">View CV</a></div></div></nav>
-  <main id="main">
-    <header class="page-hero compact-hero tech-hero"><div class="wrap"><p class="eyebrow">Technology, in context</p><h1>The stack behind the systems.</h1><p>Technologies I have worked with across production applications, modernization, integrations, testing, and cloud delivery. Azure is my primary cloud; AWS is deliberately shown as limited production exposure.</p></div></header>
-    <section class="section tech-catalog"><div class="wrap">
-      <div class="tech-toolbar" role="search" aria-label="Filter technologies">
-        <div class="field-like"><label for="tech-search">Find a technology</label><input id="tech-search" type="search" placeholder="Try C#, Azure SQL, React, testing…" data-tech-search></div>
-        <div><span class="toolbar-label">Filter by area</span><div class="filter-row" data-tech-filters><button class="filter active" type="button" data-tech-filter="all">All</button><button class="filter" type="button" data-tech-filter="application">Application</button><button class="filter" type="button" data-tech-filter="azure">Azure</button><button class="filter" type="button" data-tech-filter="data">Data</button><button class="filter" type="button" data-tech-filter="platform">Platform</button><button class="filter" type="button" data-tech-filter="quality">Quality</button><button class="filter" type="button" data-tech-filter="aws">AWS</button></div></div>
-        <p class="tech-result" aria-live="polite" data-tech-result></p>
-      </div>
-      <div class="technology-grid" data-tech-grid></div>
-      <noscript><p>C#, .NET, ASP.NET Framework, ASP.NET Core, Blazor, Windows Forms, React, jQuery, Syncfusion; Azure Functions, Service Bus, Event Hubs, App Service, Azure SQL, Cosmos DB, Redis, Key Vault, Azure Monitor, Log Analytics, Azure DevOps and Pipelines; SQL Server, MySQL, PostgreSQL, Entity Framework Core, Dapper, NHibernate, EventStoreDB; RabbitMQ, Docker, REST APIs; xUnit, bUnit, Moq, Fluent Assertions; limited production exposure to AWS KMS and Amazon RDS.</p></noscript>
-      <p class="icon-note">Microsoft Azure service artwork comes from Microsoft’s official Azure Architecture icon set. Recognizable product artwork is used where available; restrained text marks identify libraries without a suitable published product icon.</p>
-    </div></section>
-    <section class="section alt"><div class="wrap"><div class="section-head"><div><p class="eyebrow">Architecture & engineering practices</p><h2>The decisions around the tools matter just as much.</h2></div><p>These are applied approaches, separated from product logos because they are engineering practices rather than vendors.</p></div><div class="practice-grid"><span>CQRS</span><span>Domain-driven design</span><span>Microservices</span><span>Event-driven systems</span><span>Asynchronous workflows</span><span>Event scheduling</span><span>Observability</span><span>Unit testing</span><span>Integration testing</span><span>CI/CD</span><span>PR reviews</span><span>Refactoring</span><span>Performance analysis</span><span>Sprint planning</span><span>Technical mentoring</span><span>Stakeholder communication</span></div></div></section>
-  </main>
-  <footer class="footer"><div class="wrap footer-in"><span>© <span data-year></span> Ayaz Ul Haq</span><span>Verified technology experience</span></div></footer>
-  <script src="site.js?v=20260905-editorial1"></script>
-  <script>
-  (()=>{
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="brand-mark">A</span>Ayaz Ul Haq</a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="site-nav">
+        <li><a href="projects.html">Work</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="technologies.html" aria-current="page">Technologies</a></li>
+        <li><a href="impact.html">Evidence</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a class="btn small" href="Ayaz_Ul_Haq_CV.pdf"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h8"/></svg>Download CV</a></li>
+        <li><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-head">
+  <div class="wrap grid12">
+    <div class="span8"><span class="lbl">Technologies</span><h1 style="margin:.4rem 0 .6rem;font-size:clamp(1.9rem,3vw,2.6rem)">37 technologies, grouped by what they are for.</h1><p class="lede">Each one is listed with how I have used it in production. Azure is my primary cloud; the two AWS items are marked as limited exposure on purpose.</p></div>
+    <div class="span4" style="display:flex;justify-content:flex-end"><label class="search" style="min-width:220px"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" placeholder="Filter technologies" data-tech-search aria-label="Filter technologies"></label></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.75rem" data-tech-filters>
+      <button class="filter" type="button" data-cat="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-cat="language" aria-pressed="false">Language and runtime</button>
+      <button class="filter" type="button" data-cat="web" aria-pressed="false">Web and UI</button>
+      <button class="filter" type="button" data-cat="azure" aria-pressed="false">Azure</button>
+      <button class="filter" type="button" data-cat="data" aria-pressed="false">Data</button>
+      <button class="filter" type="button" data-cat="messaging" aria-pressed="false">Messaging and delivery</button>
+      <button class="filter" type="button" data-cat="testing" aria-pressed="false">Testing</button>
+    </div>
+    <div data-tech-groups></div>
+    <p class="small muted" data-tech-result></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span>&copy; <span data-year>2026</span> Ayaz Ul Haq</span>
+    <span><a href="mailto:ayyazulhak@gmail.com">ayyazulhak@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/ayaz-ul-haq">LinkedIn</a> &middot; <a href="https://github.com/Ayazulhak">GitHub</a> &middot; <a href="Ayaz_Ul_Haq_CV.pdf">CV (PDF)</a></span>
+  </div>
+</footer>
+
+<script src="main.js?v=3" defer></script>
+<script>
+(function(){
     const cdn='https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/';
     const items=[
       ['C#','Core language','Primary language for backend, web, desktop, and distributed application work.','application language csharp c#',cdn+'csharp/csharp-original.svg','C# logo'],
@@ -67,13 +113,41 @@
       ['AWS KMS','Limited AWS exposure','Limited real production exposure to key-management workloads.','aws cloud security limited kms',cdn+'amazonwebservices/amazonwebservices-original-wordmark.svg','Amazon Web Services logo'],
       ['Amazon RDS','Limited AWS exposure','Limited real production exposure to managed relational databases.','aws cloud data database limited rds',cdn+'amazonwebservices/amazonwebservices-original-wordmark.svg','Amazon Web Services logo']
     ];
-    const esc=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-    const grid=document.querySelector('[data-tech-grid]');
-    grid.innerHTML=items.map(([name,area,copy,tags,src,alt,mark])=>`<article class="technology-card ${tags.includes('limited')?'limited-card':''}" data-tech="${esc(name+' '+area+' '+tags)}"><div class="technology-icon ${src?'':'text-mark '+mark}">${src?`<img src="${src}" alt="${esc(alt)}" width="48" height="48" loading="lazy" decoding="async">`:esc(alt)}</div><div><p class="technology-area">${esc(area)}</p><h2>${esc(name)}</h2><p>${esc(copy)}</p></div></article>`).join('');
-    const search=document.querySelector('[data-tech-search]'),cards=[...grid.children],result=document.querySelector('[data-tech-result]'),buttons=[...document.querySelectorAll('[data-tech-filter]')];let category='all';
-    const apply=()=>{const words=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let visible=0;cards.forEach(card=>{const haystack=card.dataset.tech.toLowerCase(),tokens=haystack.split(/[^a-z0-9#+.]+/).filter(Boolean);const show=(category==='all'||tokens.includes(category))&&words.every(word=>tokens.some(token=>token.startsWith(word)));card.hidden=!show;if(show)visible++});result.textContent=`${visible} technolog${visible===1?'y':'ies'} shown`};
-    search.addEventListener('input',apply);buttons.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.techFilter;buttons.forEach(item=>item.classList.toggle('active',item===button));apply()}));apply();
-  })();
-  </script>
+    // Category and fallback mark per technology. The middle number is unused (years not yet confirmed by the owner).
+    const meta={
+      'C#':['language',10,'C#'],'.NET':['language',10,'.NET'],'ASP.NET Framework':['language',8,'ASP'],'ASP.NET Core':['web',7,'API'],
+      'Blazor':['web',4,'Bz'],'Windows Forms':['web',6,'WF'],'React':['web',3,'Re'],'jQuery':['web',6,'jQ'],'Syncfusion':['web',3,'Sf'],
+      'Microsoft Azure':['azure',6,'Az'],'Azure Functions':['azure',5,'Fn'],'Azure Service Bus':['azure',5,'SB'],'Azure Event Hubs':['azure',2,'EH'],'Azure App Service':['azure',6,'AS'],
+      'Azure SQL':['azure',6,'SQL'],'Azure Cosmos DB':['azure',2,'Cos'],'Azure Cache for Redis':['azure',3,'Rd'],'Azure Key Vault':['azure',4,'KV'],'Azure Monitor':['azure',4,'Mon'],'Log Analytics':['azure',4,'LA'],'Azure DevOps & Pipelines':['azure',6,'ADO'],
+      'SQL Server':['data',10,'MS'],'MySQL':['data',4,'My'],'PostgreSQL':['data',3,'Pg'],'Entity Framework Core':['data',7,'EF'],'Dapper':['data',5,'Dp'],'NHibernate':['data',3,'NH'],'EventStoreDB':['data',2,'ES'],
+      'RabbitMQ':['messaging',3,'RMQ'],'Docker':['messaging',4,'Dk'],'REST APIs':['messaging',9,'REST'],
+      'xUnit':['testing',8,'xU'],'bUnit':['testing',3,'bU'],'Moq':['testing',7,'Moq'],'Fluent Assertions':['testing',6,'FA'],
+      'AWS KMS':['messaging',0,'AWS'],'Amazon RDS':['messaging',0,'AWS']
+    };
+    const groups=[['language','Language and runtime','The core of every system listed on this site.'],['web','Web and UI','Interfaces for staff tools, portals and operational dashboards.'],['azure','Azure','Primary cloud platform: compute, messaging, data, security, operations and delivery.'],['data','Data','Relational first, with event stores where the workflow needed history.'],['messaging','Messaging, integration and delivery',''],['testing','Testing','On every .NET codebase I lead.']];
+    const tone={language:'ui',web:'worker',azure:'service',data:'data',messaging:'queue',testing:'ok'};
+    const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const host=document.querySelector('[data-tech-groups]');
+    host.innerHTML=groups.map(([cat,title,sub])=>{
+      const cards=items.filter(it=>(meta[it[0]]||['messaging'])[0]===cat).map(([name,area,copy,tags,src,alt,mark])=>{
+        const m=meta[name]||['messaging',0,name.slice(0,3)];const limited=tags.includes('limited');const yrs=m[1];
+        const t=tone[cat];const bg=t==='ok'?'var(--ok-bg)':`var(--c-${t}-bg)`;const fg=t==='ok'?'var(--ok)':`var(--c-${t})`;
+        const logo=src?`<img src="${esc(src)}" alt="" loading="lazy" data-mark="${esc(m[2])}">`:esc(m[2]);
+        return `<div class="tech ${limited?'limited':''}" data-cat="${cat}" data-text="${esc((name+' '+area+' '+copy+' '+tags).toLowerCase())}"><span class="lg" style="background:${bg};color:${fg}">${logo}</span><div class="body"><div class="top"><b>${esc(name)}</b>${limited?'<span class="yrs">limited</span>':''}</div><p>${esc(copy)}</p></div></div>`;
+      }).join('');
+      return `<div class="grp" data-cat="${cat}"><h2>${esc(title)}</h2>${sub?`<p class="sub">${esc(sub)}</p>`:''}<div class="cols3">${cards}</div></div>`;
+    }).join('');
+    host.querySelectorAll('img[data-mark]').forEach(img=>img.addEventListener('error',()=>img.replaceWith(document.createTextNode(img.dataset.mark))));
+    const cards=[...host.querySelectorAll('.tech')],grps=[...host.querySelectorAll('.grp')],result=document.querySelector('[data-tech-result]');
+    const search=document.querySelector('[data-tech-search]'),buttons=[...document.querySelectorAll('[data-tech-filters] .filter')];
+    let cat='all';
+    const apply=()=>{const words=search.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let n=0;
+      cards.forEach(c=>{const ok=(cat==='all'||c.dataset.cat===cat)&&words.every(w=>c.dataset.text.includes(w));c.hidden=!ok;if(ok)n++;});
+      grps.forEach(g=>{g.hidden=![...g.querySelectorAll('.tech')].some(c=>!c.hidden);});
+      result.textContent=`${n} of ${cards.length} technologies`;};
+    buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');cat=b.dataset.cat;apply();}));
+    search.addEventListener('input',apply);apply();
+})();
+</script>
 </body>
 </html>

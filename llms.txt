@@ -11,13 +11,11 @@
 ## Public pages
 
 - [Profile](https://ayazulhaq.com/): professional summary, verified career signals, selected engineering work, leadership approach, availability, and contact.
-- [Projects](https://ayazulhaq.com/projects.html): featured work plus 42 anonymized systems named by their business and engineering functions.
-- [Case studies](https://ayazulhaq.com/case-studies.html): confirmed problem, contribution, architecture, result, and explicit pending evidence.
-- [Architecture](https://ayazulhaq.com/architecture.html): 42 searchable, public-safe architecture diagrams with project-specific components and connection flows.
+- [Work and case studies](https://ayazulhaq.com/projects.html): three case studies (context, problem, what I did, outcome, evidence status) plus an index of 43 anonymized systems named by their business and engineering functions.
+- [Architecture](https://ayazulhaq.com/architecture.html): 43 public-safe architecture diagrams drawn in lanes from clients to data, with an animated request flow.
 - [Technologies](https://ayazulhaq.com/technologies.html): verified technology experience with official or recognizable product artwork where available.
 - [Evidence](https://ayazulhaq.com/impact.html): a public claim-status ledger separating confirmed, bounded, and pending evidence.
 - [Engineering notes](https://ayazulhaq.com/notes.html): practical technical lessons and clearly marked draft topics.
-- [Portfolio design study](https://ayazulhaq.com/site-study.html): the information architecture, confidentiality, accessibility, and evidence design behind this portfolio.
 
 ## Source and contact
 
