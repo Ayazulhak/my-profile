@@ -9,8 +9,11 @@
   <meta property="og:title" content="Work | Ayaz Ul Haq">
   <meta property="og:description" content="Fleet tracking on Azure, health information systems deployed on site, and airline integration services.">
   <meta property="og:image" content="https://ayazulhaq.com/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="main.css?v=5">
+  <link rel="stylesheet" href="main.css?v=6">
   <script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 </head>
 <body>
@@ -34,7 +37,8 @@
 
 <section class="page-head">
   <div class="col">
-    <h1>Work</h1>
+    <span class="kicker">Work</span>
+    <h1>Projects I have led and built</h1>
     <p class="lede">Three projects that show the different parts of my job: designing a system with the client, deploying and training on site, and helping a team change how its services are built.</p>
     <p class="small muted">Most of my work is under confidentiality agreements, so client names are left out unless they are already public.</p>
   </div>
@@ -42,26 +46,29 @@
 
 <div class="col">
 
-<article class="case" id="telemetry">
+<article class="case c1" id="telemetry">
+  <p class="where">Cybersoft North America · .NET Lead · 2022–23</p>
   <h2>Fleet tracking and staff scheduling</h2>
-  <p class="roles">Cybersoft North America · .NET Lead · 2022–23 · client design sessions, architecture, team lead</p>
+  <div class="roles"><span class="role client">client design</span><span class="role team">team lead</span><span class="role dev">architecture</span></div>
   <p>The client ran a fleet of trucks and needed to schedule vehicles and staff from live location data. That data came from several tracking-device providers, and each one sent pings in its own format and on its own schedule.</p>
   <p>I worked with the client to understand the scheduling rules, then led the design and delivery of the platform. Incoming pings went onto Azure Service Bus, so receiving data was separated from processing it and a slow or failing provider did not hold up the rest. Azure Functions picked the pings up and applied the business rules that drove the scheduling decisions.</p>
   <p>The system handled about 20,000 pings a day. As lead I also split the work across the team, reviewed their code and kept delivery on track against the client's deadlines.</p>
-  <p class="flow">tracking devices → Service Bus → rule functions → scheduling data</p>
+  <div class="flow"><span>tracking devices</span><i>→</i><span>Service Bus</span><i>→</i><span>rule functions</span><i>→</i><span>scheduling data</span></div>
   <p class="small">Stack: .NET, Azure Service Bus, Azure Functions, Azure Cache for Redis. <a href="architecture.html?project=telemetry-scheduling">Architecture diagram</a></p>
 </article>
 
-<article class="case" id="health">
+<article class="case c2" id="health">
+  <p class="where">National Technology Group · Software Engineer · 2016–20</p>
   <h2>Health information systems for the Saudi Ministry of Health</h2>
-  <p class="roles">National Technology Group · Software Engineer · 2016–20 · development, on-site deployment, staff training, sprint planning</p>
+  <div class="roles"><span class="role dev">development</span><span class="role client">on-site deployment</span><span class="role client">staff training</span><span class="role plan">sprint planning</span></div>
   <p>I developed health information systems used in Saudi Ministry of Health facilities. The work did not stop at writing the software: I travelled to site to deploy it and trained the staff who would use it day to day.</p>
   <p>For one primary health care centre I was responsible for the whole cycle: gathering requirements, building, deploying, and then maintaining the system and handling change requests after release. I ran sprint planning for a team of six on that project.</p>
 </article>
 
-<article class="case" id="airline">
+<article class="case c3" id="airline">
+  <p class="where">Calrom · Software Engineer II · 2021–22</p>
   <h2>Splitting an airline integration monolith</h2>
-  <p class="roles">Calrom · Software Engineer II · 2021–22 · development, monitoring, team stand-ups</p>
+  <div class="roles"><span class="role dev">development</span><span class="role dev">monitoring</span><span class="role team">stand-ups</span></div>
   <p>Calrom ran integration services for several airlines from one shared, multi-tenant codebase. Because everything lived in one place, a problem in one area could affect every tenant, and it was hard to say which team owned what.</p>
   <p>I was part of the team that moved shared capabilities out into separate services that could be deployed on their own. I also set up central monitoring with Azure Monitor and Log Analytics, so the services' logs, metrics and request diagnostics could be looked at in one place.</p>
   <p>Alongside the engineering work I took on team-lead duties: running stand-ups and setting the order of tasks.</p>
@@ -78,6 +85,19 @@
   </div>
 </section>
 
+<section class="section band">
+  <div class="wrap">
+    <div>
+      <h2>Have something that needs building?</h2>
+      <p>Whether it is a project, a role or a question about anything on this site, I'm happy to talk.</p>
+    </div>
+    <div class="hero-actions" style="margin:0">
+      <a class="cta" href="mailto:ayyazulhak@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>ayyazulhak@gmail.com</a>
+      <a class="cta ghost" href="https://www.linkedin.com/in/ayaz-ul-haq" rel="me">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="footer">
@@ -87,6 +107,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=5" defer></script>
+<script src="main.js?v=6" defer></script>
 </body>
 </html>

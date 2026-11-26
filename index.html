@@ -13,8 +13,11 @@
   <meta property="og:url" content="https://ayazulhaq.com/">
   <meta property="og:image" content="https://ayazulhaq.com/og.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="main.css?v=5">
+  <link rel="stylesheet" href="main.css?v=6">
   <script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://ayazulhaq.com/#ayaz-ul-haq","name":"Ayaz Ul Haq","url":"https://ayazulhaq.com/","jobTitle":"Technical Lead","worksFor":{"@type":"Organization","name":"Techinoid LLC"},"address":{"@type":"PostalAddress","addressLocality":"Lahore","addressCountry":"PK"},"email":"mailto:ayyazulhak@gmail.com","sameAs":["https://www.linkedin.com/in/ayaz-ul-haq"]}</script>
 </head>
@@ -37,69 +40,113 @@
 
 <main id="main">
 
-<section class="intro">
-  <div class="col">
-    <p class="meta">Technical Lead at Techinoid · Lahore, Pakistan</p>
-    <h1>I take software from the client's first call to production.</h1>
-    <p class="lede">I'm a technical lead with ten years on .NET and Azure. I talk to clients every day, turn what they ask for into planned work, run the sprint, lead a small team and write the difficult parts of the code myself.</p>
-    <p class="links"><a href="mailto:ayyazulhak@gmail.com">ayyazulhak@gmail.com</a><a href="https://www.linkedin.com/in/ayaz-ul-haq" rel="me">LinkedIn</a><a href="Ayaz_Ul_Haq_CV.pdf">CV (PDF)</a></p>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="meta"><i></i>Technical Lead at Techinoid · Lahore, Pakistan</p>
+      <h1>I take software from the client's <span class="hl">first call</span> to <span class="hl">production</span>.</h1>
+      <p class="lede">I'm a technical lead with ten years on .NET and Azure. I talk to clients every day, turn what they ask for into planned work, run the sprint, lead a small team and write the difficult parts of the code myself.</p>
+      <div class="hero-actions">
+        <a class="cta" href="projects.html">See my work<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="cta ghost" href="Ayaz_Ul_Haq_CV.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Download CV</a>
+      </div>
+      <p class="hero-links"><a href="mailto:ayyazulhak@gmail.com">ayyazulhak@gmail.com</a><a href="https://www.linkedin.com/in/ayaz-ul-haq" rel="me">LinkedIn</a></p>
+    </div>
+
+    <aside class="path-card" aria-label="How a client request moves through my hands">
+      <div class="lbl"><span>A client request, start to finish</span><span>one person</span></div>
+      <ol class="path">
+        <li class="client"><b>Client call <span class="role client">client</span></b><span class="d">The client tells me what they need.</span></li>
+        <li class="client"><b>Scope <span class="role client">client</span></b><span class="d">We agree what will be built.</span></li>
+        <li class="plan"><b>Sprint plan <span class="role plan">planning</span></b><span class="d">I break it into tasks and set priorities.</span></li>
+        <li class="dev"><b>Build <span class="role dev">code</span> <span class="role ai">AI</span></b><span class="d">I take the hard parts, with Claude Code.</span></li>
+        <li class="team"><b>Review <span class="role team">team</span></b><span class="d">I review the team's pull requests.</span></li>
+        <li class="plan"><b>Release <span class="role plan">planning</span></b><span class="d">It ships, and the client hears from me.</span></li>
+      </ol>
+    </aside>
   </div>
 </section>
 
 <section class="section">
-  <div class="col">
-    <h2>What I handle</h2>
-    <dl class="rows">
-      <div><dt>The client</dt><dd>I'm in contact with clients every day. I take their requests, work out with them what we will build, and turn that into tasks the team can start on.</dd></div>
-      <div><dt>Planning</dt><dd>Sprint planning, estimates and priorities. I keep the client up to date on where the work stands and what is coming next.</dd></div>
-      <div><dt>The team</dt><dd>I have led teams of three to seven engineers: handing out work, reviewing pull requests, mentoring junior developers and helping with hiring interviews.</dd></div>
-      <div><dt>Code</dt><dd>I still write code, usually the parts that are hardest to get right: integrations, messaging between services, and moving live systems to newer versions of .NET.</dd></div>
-      <div><dt>AI</dt><dd>I use Claude Code for most of my day-to-day work, and Codex alongside it, to get client requests built and shipped faster.</dd></div>
-    </dl>
-    <p class="small muted" style="margin-top:1.25rem">I have not held formal line-management responsibility, and my cloud work has been on Azure rather than AWS.</p>
+  <div class="wrap split">
+    <header>
+      <span class="kicker">Five roles, one person</span>
+      <h2>What I handle</h2>
+      <p>Most projects split these across several people. I usually do all of them on the same piece of work.</p>
+    </header>
+    <div>
+      <div class="handle">
+        <div class="client"><h3>The client</h3><p>I'm in contact with clients every day. I take their requests, work out with them what we will build, and turn that into tasks the team can start on.</p></div>
+        <div class="plan"><h3>Planning</h3><p>Sprint planning, estimates and priorities. I keep the client up to date on where the work stands and what is coming next.</p></div>
+        <div class="team"><h3>The team</h3><p>I have led teams of three to seven engineers: handing out work, reviewing pull requests, mentoring junior developers and helping with hiring interviews.</p></div>
+        <div class="dev"><h3>Code</h3><p>I still write code, usually the parts that are hardest to get right: integrations, messaging between services, and moving live systems to newer versions of .NET.</p></div>
+        <div class="ai"><h3>AI</h3><p>I use Claude Code for most of my day-to-day work, and Codex alongside it, to get client requests built and shipped faster.</p></div>
+      </div>
+      <p class="small muted" style="margin-top:1.1rem">I have not held formal line-management responsibility, and my cloud work has been on Azure rather than AWS.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section tinted">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="kicker">Selected work</span><h2>Three projects, three kinds of job</h2></div>
+      <a href="projects.html" style="font-weight:600">All the detail →</a>
+    </div>
+    <div class="cards">
+      <article class="card c1">
+        <span class="where">Cybersoft · 2022–23</span>
+        <h3><a href="projects.html#telemetry">Fleet tracking and staff scheduling</a></h3>
+        <p>Several tracking-device providers sent location pings in their own formats and at their own intervals. I led the design of a pipeline on Azure Service Bus and Azure Functions that applied the client's scheduling rules to all of them, about 20,000 pings a day.</p>
+        <div class="roles"><span class="role client">client</span><span class="role team">team</span><span class="role dev">code</span></div>
+        <span class="more">Read the project →</span>
+      </article>
+      <article class="card c2">
+        <span class="where">National Technology Group · 2016–20</span>
+        <h3><a href="projects.html#health">Health systems for the Saudi Ministry of Health</a></h3>
+        <p>I built health information systems, then went on site to deploy them and train the staff who would use them. For one primary health care centre I ran the work from requirements to maintenance, with a team of six.</p>
+        <div class="roles"><span class="role client">client</span><span class="role plan">planning</span><span class="role dev">code</span></div>
+        <span class="more">Read the project →</span>
+      </article>
+      <article class="card c3">
+        <span class="where">Calrom · 2021–22</span>
+        <h3><a href="projects.html#airline">Splitting an airline integration monolith</a></h3>
+        <p>I helped move multi-tenant airline integration services from a monolith toward separate services, and set up central monitoring with Azure Monitor and Log Analytics. I also took over the team's stand-ups and task priorities.</p>
+        <div class="roles"><span class="role dev">code</span><span class="role team">team</span><span class="role plan">planning</span></div>
+        <span class="more">Read the project →</span>
+      </article>
+    </div>
+    <p style="margin-top:1.5rem">I have also drawn <a href="architecture.html">animated architecture diagrams</a> of other systems I've worked on.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="col">
-    <h2>Selected work</h2>
-    <article class="entry">
-      <h3><a href="projects.html#telemetry">Fleet tracking and staff scheduling</a></h3>
-      <p class="roles">Cybersoft · 2022–23 · client design sessions, architecture, team lead</p>
-      <p>Several tracking-device providers sent location pings in their own formats and at their own intervals. I led the design of a pipeline on Azure Service Bus and Azure Functions that applied the client's scheduling rules to all of them, about 20,000 pings a day.</p>
-    </article>
-    <article class="entry">
-      <h3><a href="projects.html#health">Health information systems for the Saudi Ministry of Health</a></h3>
-      <p class="roles">National Technology Group · 2016–20 · development, on-site deployment, staff training, sprint planning</p>
-      <p>I built health information systems, then went on site to deploy them and train the staff who would use them. For one primary health care centre I ran the work from requirements to maintenance, including sprint planning for a team of six.</p>
-    </article>
-    <article class="entry">
-      <h3><a href="projects.html#airline">Splitting an airline integration monolith</a></h3>
-      <p class="roles">Calrom · 2021–22 · development, monitoring, team stand-ups</p>
-      <p>I helped move multi-tenant airline integration services from a monolith toward separate services, and set up central monitoring with Azure Monitor and Log Analytics. I also took over the team's stand-ups and task priorities.</p>
-    </article>
-    <p style="margin-top:1.25rem"><a href="projects.html">More on these projects</a> · <a href="architecture.html">Architecture diagrams of other systems I've worked on</a></p>
+  <div class="wrap split">
+    <header>
+      <span class="kicker">Background</span>
+      <h2>Ten years, from associate to lead</h2>
+      <p><a href="about.html">Full background and stack</a></p>
+    </header>
+    <ol class="timeline">
+      <li class="now"><span class="when">2023 – now</span><b>Technical Lead</b> <span class="org">· Techinoid</span><p>Leading .NET, Blazor and Azure delivery, working with clients directly.</p></li>
+      <li><span class="when">2022 – 2023</span><b>.NET Lead</b> <span class="org">· Cybersoft North America</span><p>Led the fleet tracking and scheduling platform.</p></li>
+      <li><span class="when">2022</span><b>Lead Software Engineer</b> <span class="org">· Geeks Ltd.</span></li>
+      <li><span class="when">2021 – 2022</span><b>Software Engineer II</b> <span class="org">· Calrom</span><p>Airline integration services.</p></li>
+      <li><span class="when">2015 – 2021</span><b>Software Engineer</b> <span class="org">· four companies</span><p>Including health systems for the Saudi Ministry of Health.</p></li>
+    </ol>
   </div>
 </section>
 
-<section class="section">
-  <div class="col">
-    <h2>Background</h2>
-    <ul class="career">
-      <li><span class="when">2023 – now</span><span class="what">Technical Lead <span>· Techinoid</span></span></li>
-      <li><span class="when">2022 – 2023</span><span class="what">.NET Lead <span>· Cybersoft North America</span></span></li>
-      <li><span class="when">2022</span><span class="what">Lead Software Engineer <span>· Geeks Ltd.</span></span></li>
-      <li><span class="when">2021 – 2022</span><span class="what">Software Engineer II <span>· Calrom</span></span></li>
-      <li><span class="when">2015 – 2021</span><span class="what">Software engineer at four companies, starting in 2015</span></li>
-    </ul>
-    <p><a href="about.html">Full background</a> · <a href="Ayaz_Ul_Haq_CV.pdf">CV (PDF)</a></p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="col">
-    <h2>Contact</h2>
-    <p>If you want to talk about a project, a role or anything on this page, email me at <a href="mailto:ayyazulhak@gmail.com">ayyazulhak@gmail.com</a> or find me on <a href="https://www.linkedin.com/in/ayaz-ul-haq">LinkedIn</a>.</p>
+<section class="section band">
+  <div class="wrap">
+    <div>
+      <h2>Have something that needs building?</h2>
+      <p>Whether it is a project, a role or a question about anything on this site, I'm happy to talk.</p>
+    </div>
+    <div class="hero-actions" style="margin:0">
+      <a class="cta" href="mailto:ayyazulhak@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>ayyazulhak@gmail.com</a>
+      <a class="cta ghost" href="https://www.linkedin.com/in/ayaz-ul-haq" rel="me">LinkedIn</a>
+    </div>
   </div>
 </section>
 
@@ -112,6 +159,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=5" defer></script>
+<script src="main.js?v=6" defer></script>
 </body>
 </html>
