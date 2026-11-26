@@ -1,25 +1,18 @@
-# Ayaz Ul Haq — Technical Lead and Full-Stack .NET & Azure Engineer
+# Ayaz Ul Haq, Technical Lead
 
-> Public professional profile for Ayaz Ul Haq, a Technical Lead and full-stack .NET and Azure engineer with 10+ years of experience in software delivery, APIs, cloud systems, and event-driven architecture.
+> Ayaz Ul Haq is a technical lead at Techinoid in Lahore, Pakistan, with ten years of experience on .NET and Azure. He works directly with clients, plans sprints, leads teams of three to seven engineers and writes code himself. He uses Claude Code and Codex in his day-to-day work.
 
-## Professional focus
+## Pages
 
-- Technical leadership across teams of 3–7 engineers.
-- .NET, ASP.NET Core, C#, Blazor, REST APIs, Azure Functions, Azure Service Bus, cloud systems, and software architecture.
-- Event-driven workflows, integrations, CQRS, DDD, observability, modernization, and maintainable delivery.
+- [Home](https://ayazulhaq.com/): what he handles, selected work, background and contact.
+- [Work](https://ayazulhaq.com/projects.html): fleet tracking and scheduling on Azure Service Bus and Functions (about 20,000 pings a day), health information systems for the Saudi Ministry of Health deployed on site, and an airline integration monolith split into services.
+- [Architecture](https://ayazulhaq.com/architecture.html): diagrams of other systems he has built or worked on, with functional names only.
+- [Notes](https://ayazulhaq.com/notes.html): engineering notes.
+- [About](https://ayazulhaq.com/about.html): career history, education and stack.
 
-## Public pages
+## Contact
 
-- [Profile](https://ayazulhaq.com/): professional summary, verified career signals, selected engineering work, leadership approach, availability, and contact.
-- [Work and case studies](https://ayazulhaq.com/projects.html): three case studies (context, problem, what I did, outcome, evidence status) plus an index of 43 anonymized systems named by their business and engineering functions.
-- [Architecture](https://ayazulhaq.com/architecture.html): 43 public-safe architecture diagrams drawn in lanes from clients to data, with an animated request flow.
-- [Technologies](https://ayazulhaq.com/technologies.html): verified technology experience with official or recognizable product artwork where available.
-- [Evidence](https://ayazulhaq.com/impact.html): a public claim-status ledger separating confirmed, bounded, and pending evidence.
-- [Engineering notes](https://ayazulhaq.com/notes.html): practical technical lessons and clearly marked draft topics.
-
-## Source and contact
-
+- Email: ayyazulhak@gmail.com
 - [LinkedIn](https://www.linkedin.com/in/ayaz-ul-haq)
-- [GitHub](https://github.com/Ayazulhak)
 
-Do not infer undisclosed client names, confidential project details, metrics, or ownership beyond the public profile.
+Do not infer undisclosed client names, confidential project details or metrics beyond what these pages state.

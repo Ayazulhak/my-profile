@@ -3,17 +3,19 @@
 .arch-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 1.5rem; align-items: start; }
 @media (max-width: 960px) { .arch-layout { grid-template-columns: 1fr; } }
 
-.arch-picker { background: var(--raised); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .6rem; position: sticky; top: 5rem; max-height: calc(100vh - 6rem); }
+.arch-picker { background: var(--raised); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: .6rem; position: sticky; top: 1rem; max-height: calc(100vh - 2rem); }
 @media (max-width: 960px) { .arch-picker { position: static; max-height: none; } }
 .arch-list { display: flex; flex-direction: column; overflow: auto; margin-top: .25rem; }
 .arch-item { display: flex; align-items: center; gap: .75rem; padding: .65rem .8rem; border-radius: 9px; color: var(--ink); font-size: .875rem; border: 1px solid transparent; }
 .arch-item:hover { background: var(--tint); text-decoration: none; }
 .arch-item.is-active { background: var(--tint); border-color: var(--rule-strong); font-weight: 500; }
+.arch-item { text-decoration: none; }
 .arch-item[hidden] { display: none; }
 
 .arch-panel { background: var(--raised); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
 .arch-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
-.arch-head h2 { margin: .1rem 0 0; font-size: 1.375rem; }
+.arch-head h2 { margin: .1rem 0 0; font-size: 1.25rem; }
+.arch-head .lbl { text-transform: capitalize; }
 .arch-stage { padding: 1.4rem; }
 .arch-foot { padding: 1rem 1.4rem; border-top: 1px solid var(--rule); background: var(--tint); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; font-size: .875rem; }
 @media (max-width: 760px) { .arch-foot { grid-template-columns: 1fr; } }

@@ -126,7 +126,7 @@
     svg.innerHTML = `<title>${esc(project.title)} architecture</title><g class="lanes">${lanes}</g><g class="edges">${edges}</g><g class="labels">${labels}</g><g class="nodes">${nodes}</g>`;
     if (titleEl) titleEl.textContent = project.title;
     if (summaryEl) summaryEl.textContent = project.summary;
-    if (metaEl) metaEl.textContent = `System ${String(data.indexOf(project) + 1).padStart(2, '0')} of ${data.length} · ${project.group}`;
+    if (metaEl) metaEl.textContent = project.group;
     if (nodesEl) nodesEl.innerHTML = project.nodes.map(n => `<span class="chip"><i class="dot ${esc(n[4])}" style="margin-right:.4rem"></i>${esc(n[1])}</span>`).join('');
     items.forEach(el => el.classList.toggle('is-active', el.dataset.id === project.id));
     document.title = `${project.title} | Architecture | Ayaz Ul Haq`;
