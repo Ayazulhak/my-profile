@@ -1,11 +1,9 @@
-/* ayazulhaq.com: theme toggle and footer year. */
+/* ayazulhaq.com: theme toggle (light by default) and footer year. */
 (function () {
   const root = document.documentElement;
 
   function currentTheme() {
-    const explicit = root.getAttribute('data-theme');
-    if (explicit) return explicit;
-    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
   }
   document.querySelectorAll('[data-theme-toggle]').forEach(button => {
     button.addEventListener('click', () => {

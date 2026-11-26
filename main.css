@@ -33,17 +33,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #161615; --raised: #1d1d1b; --tint: #222220;
-    --rule: #2e2e2b; --rule-strong: #3d3d39;
-    --ink: #ecece8; --ink-2: #c4c4bd; --ink-3: #96968e; --ink-4: #6e6e67;
-    --accent: #8db8e3; --accent-hover: #b6d3f0;
-    --c-ui: #7fb0e0; --c-ui-bg: #1f2d3a; --c-service: #6fa3dc; --c-service-bg: #1e2a38; --c-worker: #9aa2e8; --c-worker-bg: #262a44;
-    --c-data: #e0935a; --c-data-bg: #3a2a1c; --c-queue: #6fbfae; --c-queue-bg: #1c342e; --c-external: #9aa8b6; --c-external-bg: #262c33;
-    color-scheme: dark;
-  }
-}
 :root[data-theme="dark"] {
   --paper: #161615; --raised: #1d1d1b; --tint: #222220;
   --rule: #2e2e2b; --rule-strong: #3d3d39;
@@ -104,10 +93,6 @@ code, .mono { font-family: var(--mono); font-size: .86em; }
 .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .sun { display: block; }
-  :root:not([data-theme="light"]) .theme-toggle .moon { display: none; }
-}
 @media (max-width: 520px) {
   .nav-in { flex-wrap: wrap; gap: .25rem 1rem; padding-block: .75rem; }
   .nav-links { gap: 1.1rem; }
